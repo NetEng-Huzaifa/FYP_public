@@ -1,0 +1,17 @@
+default interface
+
+description
+shutdown
+no shutdown(up)
+full-duplex_half-duplex
+
+sub interfaces
+keep alive
+speed
+bandwidth
+
+
+
+
+
+
