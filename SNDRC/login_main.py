@@ -9,7 +9,7 @@ def login_button_press(ip, user, pwd, vendor, device, access_method):
             if access_method == "Telnet":
                 # if telnet_device(ip, user, pwd) == "Successful":  # call telnet_device function
                 #     root.destroy()
-                subprocess.call(["python", '/first_ssh/first_ssh_main.py'], cwd="cd ../first_ssh/", shell=True)
+                subprocess.call(["python", 'first_ssh_main.py'], shell=True)
             elif access_method == "SSH1" or "SSH2":
                 if telnet_device(ip, user, pwd) == "Successful":  # call telnet_device function
                     root.destroy()
