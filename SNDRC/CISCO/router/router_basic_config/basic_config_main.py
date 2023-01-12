@@ -71,8 +71,7 @@ def basicConfig():
     name_rmv_entry.grid(row=0, column=1, padx=10)
 
     # Buttons Section
-    user_rmv_run_button = tk.Button(removeuser_info_frame, text="Execute", width=12,
-                                 command=lambda: user_rmv_config(name_rmv_value.get()))
+    user_rmv_run_button = tk.Button(removeuser_info_frame, text="Execute", width=12, command=lambda: user_rmv_config(name_rmv_value.get()))
     user_rmv_run_button.grid(row=0, column=3, padx=20, sticky=tk.E)
 
     # Commands_display_frame = LabelFrame(user_frame, text="Commands")
