@@ -4,7 +4,7 @@ from .basic_config_functions import *
 
 def basicConfig():
     notebook = ttk.Notebook(right_main_frame)
-    notebook.pack(expand=True, fill=tk.BOTH)
+    notebook.pack(expand=True, anchor=tk.N, fill=tk.X)
 
     # create frames
     user_frame = tk.Frame(notebook)
