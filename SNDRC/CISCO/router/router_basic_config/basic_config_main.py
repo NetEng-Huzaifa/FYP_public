@@ -12,7 +12,6 @@ def basicConfig():
     ssh_main_frame = tk.Frame(notebook)
     system_frame = tk.Frame(notebook)
 
-
     system1_main_frame.pack(fill='both', expand=True)
     user_frame.pack(fill='both', expand=True)
     ssh_main_frame.pack(fill='both', expand=True)
@@ -40,7 +39,7 @@ def basicConfig():
 
     hostname_entry.grid(row=0, column=1, padx=20)
     # Buttons Section
-    hostname_run_button = tk.Button(hostname_frame, text="Execute", width=12, command=lambda: ssh_cfig(ssh_domain_value, ssh_version_value))
+    hostname_run_button = tk.Button(hostname_frame, text="Execute", width=12, command=lambda: hostname_config(hostname_value))
 
     hostname_run_button.grid(row=2, column=3, padx=20, pady=10, sticky=tk.E)
 
@@ -58,12 +57,12 @@ def basicConfig():
     enablePass_type_value = tk.StringVar()
 
     enablePass_entry = tk.Entry(enablePassword_frame, textvariable=enablePass_value)
-    enablePass_type_combobox = ttk.Combobox(enablePassword_frame, values=["Plain", "Cipher"], textvariable=enablePass_type_value)
+    enablePass_type_combobox = ttk.Combobox(enablePassword_frame, values=["Plain text", "Cipher"], textvariable=enablePass_type_value)
 
     enablePass_entry.grid(row=0, column=1, padx=20, pady=15)
     enablePass_type_combobox.grid(row=1, column=1, padx=20, pady=5)
     # Buttons Section
-    ssh_run_button = tk.Button(enablePassword_frame, text="Execute", width=12, command=lambda: ssh_cfig(ssh_domain_value, ssh_version_value))
+    ssh_run_button = tk.Button(enablePassword_frame, text="Execute", width=12, command=lambda: enablePass_config(enablePass_value, enablePass_type_value))
 
     ssh_run_button.grid(row=2, column=3, padx=20, pady=10, sticky=tk.E)
 
@@ -81,7 +80,7 @@ def basicConfig():
 
     motd_entry.grid(row=0, column=1, padx=20)
     # Buttons Section
-    motd_run_button = tk.Button(motd_frame, text="Execute", width=12, command=lambda: ssh_cfig(ssh_domain_value, ssh_version_value))
+    motd_run_button = tk.Button(motd_frame, text="Execute", width=12, command=lambda: motd_config(motd_value))
 
     motd_run_button.grid(row=2, column=3, padx=20, pady=10, sticky=tk.E)
 
@@ -89,17 +88,42 @@ def basicConfig():
     clockSet_frame = tk.LabelFrame(system1_main_frame, text="CLOCK SET")
     clockSet_frame.pack(fill=tk.X, padx=20, pady=15)
     # label section
-    clockSet_label = tk.Label(clockSet_frame, text="Set the date & time of device : ")
+    clock_hour_label = tk.Label(clockSet_frame, text="Hour")
+    clock_min_label = tk.Label(clockSet_frame, text="Minute")
+    clock_sec_label = tk.Label(clockSet_frame, text="Second")
+    clock_date_label = tk.Label(clockSet_frame, text="Date")
+    clock_month_label = tk.Label(clockSet_frame, text="Month")
+    clock_year_label = tk.Label(clockSet_frame, text="Year")
 
-    clockSet_label.grid(row=0, column=0)
+    clock_hour_label.grid(row=0, column=0)
+    clock_min_label.grid(row=0, column=1)
+    clock_sec_label.grid(row=0, column=2)
+    clock_date_label.grid(row=0, column=3)
+    clock_month_label.grid(row=0, column=4)
+    clock_year_label.grid(row=0, column=5)
     # Entries Section
-    clockSet_value = tk.StringVar()
+    clock_hour_value = tk.StringVar()
+    clock_min_value = tk.StringVar()
+    clock_sec_value = tk.StringVar()
+    clock_date_value = tk.StringVar()
+    clock_month_value = tk.StringVar()
+    clock_year_value = tk.StringVar()
 
-    clockSet_entry = tk.Entry(clockSet_frame, textvariable=clockSet_value)
+    clock_hour_entry = tk.Entry(clockSet_frame, textvariable=clock_hour_value)
+    clock_min_entry = tk.Entry(clockSet_frame, textvariable=clock_min_value)
+    clock_sec_entry = tk.Entry(clockSet_frame, textvariable=clock_sec_value)
+    clock_date_entry = tk.Entry(clockSet_frame, textvariable=clock_date_value)
+    clock_month_entry = tk.Entry(clockSet_frame, textvariable=clock_month_value)
+    clock_year_entry = tk.Entry(clockSet_frame, textvariable=clock_year_value)
 
-    clockSet_entry.grid(row=0, column=1, padx=20)
+    clock_hour_entry.grid(row=1, column=0, padx=20)
+    clock_min_entry.grid(row=1, column=1, padx=20)
+    clock_sec_entry.grid(row=1, column=2, padx=20)
+    clock_date_entry.grid(row=1, column=3, padx=20)
+    clock_month_entry.grid(row=1, column=4, padx=20)
+    clock_year_entry.grid(row=1, column=5, padx=20)
     # Buttons Section
-    clockSet_run_button = tk.Button(clockSet_frame, text="Execute", width=12, command=lambda: ssh_cfig(ssh_domain_value, ssh_version_value))
+    clockSet_run_button = tk.Button(clockSet_frame, text="Execute", width=12, command=lambda: clockSet_config(clock_hour_value, clock_min_value, clock_sec_value, clock_date_value, clock_month_value, clock_year_value))
 
     clockSet_run_button.grid(row=2, column=3, padx=20, pady=10, sticky=tk.E)
 
@@ -170,8 +194,7 @@ def basicConfig():
     # data_entry = Entry(data_display_frame, width=50)
     # data_entry.pack(side=RIGHT, expand=True, fill=BOTH)
 
-    # =============================================================
-    # System Section
+    # ===============================System Section==============================
     system_save_frame = tk.LabelFrame(system_frame, text="SAVE")
     system_save_frame.pack(fill=tk.X, padx=20, pady=15)
 
