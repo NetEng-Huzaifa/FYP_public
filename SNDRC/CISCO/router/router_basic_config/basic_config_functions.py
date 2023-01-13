@@ -1,4 +1,4 @@
-# from Cisco.Router.deviceConfig import *
+from CISCO.router.access_cisco_router.access_cisco_router_ssh import *
 def user_add_config(new_name_value, password_value, type_value, privilige_value):
     def type_value_checking():
         if type_value.get() == "Plain text":
@@ -24,7 +24,7 @@ def user_add_config(new_name_value, password_value, type_value, privilige_value)
         add_user = f"username {new_name_value} privilege {after_privilige_value} {after_type_value} {new_password_value}"
         print(add_user)
         # c1 = TelnetCiscoRouter("192.168.33.133","huzaifa","123")
-        c1.add_commands(add_user)
+        conn.add_commands(add_user)
 
     runCmds_usernameAdd()
 
@@ -32,15 +32,15 @@ def user_add_config(new_name_value, password_value, type_value, privilige_value)
 def user_rmv_config(name_rmv_value):
     rmv_user = f"no username {name_rmv_value}"
     print(rmv_user)
-    c1.add_commands(rmv_user)
+    conn.add_commands(rmv_user)
 # =============================================================
 #System Section
 
 def device_save():
-    c1.save_device_commands()
+    conn.save_device_commands()
 
 def device_backup():
-    c1.backup_device_commands()
+    conn.backup_device_commands()
 
 # =============================================================
 # SSH Section
@@ -56,8 +56,8 @@ def ssh_config(ssh_domain_value, ssh_version_value):
 
     ssh_run_commands = f"ip domain-name {ssh_domain_value.get()}\n crypto key generate rsa\n {version_selection(ssh_version_value.get())}\n yes \n line vty 0 4\n transport input all\n login local\n exit\n"
     print(ssh_run_commands)
-    scr1 = SshCiscoRouter("192.168.33.133", "huzaifa", "123")
-    scr1.add_commands(ssh_run_commands)
+    # scr1 = SshCiscoRouter("192.168.33.133", "huzaifa", "123")
+    conn.add_commands(ssh_run_commands)
 
 
 
