@@ -42,6 +42,10 @@ def device_save():
 def device_backup():
     conn.backup_device_commands()
 
+def device_reset():
+    conn.reset_device_commands()
+
+
 # =============================================================
 # SSH Section
 
