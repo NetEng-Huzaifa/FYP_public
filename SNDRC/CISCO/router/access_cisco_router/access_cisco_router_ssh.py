@@ -2,9 +2,9 @@ from netmiko import ConnectHandler
 import os
 
 #this section will comment out when start execution of login page or ssh page
-for i in range(1, 3):
-    os.chdir("..")
-# print(os.getcwd())
+# for i in range(1, 2):
+#     os.chdir("..")
+print(os.getcwd())
 with open("login_info.txt", "r") as f:
     var = f.readline()
     info = var.split(",")
@@ -46,12 +46,13 @@ class SshDevice:
         # print(result)
         pass
     def get_info_from_router(self, command):
+        self.ssh.send_command("terminal length 0\n")
+        return self.ssh.send_command(command)
         # self.telnet.write(command.encode('ascii') + b'\n')
         # all = self.telnet.read_very_eager().decode('utf-8')
         # print(all)
         # self.telnet.write(b'end\n')
         # self.telnet.write(b'exit\n')
-        return "all"
 
     def enable(self):
         self.ssh.enable()
