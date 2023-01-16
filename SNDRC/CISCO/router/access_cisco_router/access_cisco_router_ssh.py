@@ -1,7 +1,7 @@
 from netmiko import ConnectHandler
 import os
 
-
+#this section will comment out when start execution of login page or ssh page
 for i in range(1, 3):
     os.chdir("..")
 # print(os.getcwd())
@@ -14,7 +14,7 @@ cisco_router = {
     'username': info[1],
     'password': info[2],
     'secret': info[3],
-    'port': 22,
+    'port': 22
 }
 class SshDevice:
     def __init__(self):
