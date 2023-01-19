@@ -1,4 +1,5 @@
 from netmiko import ConnectHandler
+from tkinter import messagebox as mgbx
 import os
 
 #this section will comment out when start execution of login page or ssh page
@@ -18,47 +19,39 @@ cisco_router = {
 }
 class SshDevice:
     def __init__(self):
-        self.ssh = ConnectHandler(**cisco_router)
-        self.ssh.enable()
+        try:
+            self.ssh = ConnectHandler(**cisco_router)
+            self.ssh.enable()
+        except Exception as e:
+            mgbx.showinfo("Error!", f"{e}")
+    def reset_mode(self):
+        if self.ssh.config_mode():
+            self.ssh.exit_config_mode()
     def add_commands(self, commands):
+        self.reset_mode()
         self.ssh.config_mode()
         self.ssh.send_command(commands)
         self.ssh.exit_config_mode()
 
-    # same issue with this function
     def save_device_commands(self):
-        result = self.ssh.send_command("copy run start")
-        result = self.ssh.send_command("yes")
-        print(result)
-        # self.ssh.send_command("\n")
-        # self.telnet.read_until(b'Overwrite the previous NVRAM configuration?[confirm]', 0.3)
-        # self.telnet.write(b'\n')
+        self.ssh.send_command("copy run start", read_timeout=1)
+        self.ssh.send_command("yes")
     def backup_device_commands(self):
         self.ssh.send_command("terminal length 0\n")
         result = self.ssh.send_command("show running-config")
-        print(result)
-    # issue in this function
+        with open(f"{info[0]}_backup.txt", "w") as f:
+            f.write(result)
+            # print(result)
     def reset_device_commands(self):
-        # self.ssh.send_command("write erase")
-        # self.ssh.send_command("y", expect_string="[confirm]")
-        # result = self.ssh.send_command("y",expect_string="Erasing the nvram filesystem will remove all configuration files! Continue? [confirm]",delay_factor=1)
-        # result = self.ssh.send_command("show running-config")
-        # print(result)
-        pass
+        self.ssh.send_command("write erase", read_timeout=1)
+        self.ssh.send_command("y", read_timeout=1)
+    def reload_device_commands(self):
+        self.ssh.send_command("reload", read_timeout=1)
+        self.ssh.send_command("y", read_timeout=1)
     def get_info_from_router(self, command):
+        self.reset_mode()
         self.ssh.send_command("terminal length 0\n")
         return self.ssh.send_command(command)
-        # self.telnet.write(command.encode('ascii') + b'\n')
-        # all = self.telnet.read_very_eager().decode('utf-8')
-        # print(all)
-        # self.telnet.write(b'end\n')
-        # self.telnet.write(b'exit\n')
 
-    def enable(self):
-        self.ssh.enable()
-        result = self.ssh.send_command('show run')
-        return result
 
 conn = SshDevice()
-# result = c1.enable()
-# print(result)

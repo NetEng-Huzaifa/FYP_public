@@ -3,7 +3,7 @@ from CISCO.router.access_cisco_router.access_cisco_router_ssh import *
 
 # ==============================System Section===============================
 def hostname_config(hostname_value):
-    hostname = f"hostname {hostname_value.get()}"
+    hostname = f"hostname {hostname_value}"
     print(hostname)
     conn.add_commands(hostname)
 def enablePass_config(enablePass_value, enablePass_type_value):
@@ -125,7 +125,8 @@ def device_backup():
 
 def device_reset():
     conn.reset_device_commands()
-
+def device_reload():
+    conn.reload_device_commands()
 
 # ==============================SSH Section===============================
 
@@ -136,42 +137,26 @@ def ssh_config(ssh_domain_value, ssh_version_value):
         elif ssh_version_value == "2":
             return 768
         else:
-            # print("Please Enter correct SSH version")
             mgbx.showinfo("Access Denied", f"Please Enter correct SSH version")
-
-
     def ssh_config_error_checking(ssh_domain_value, ssh_version_value):
         if ssh_domain_value and ssh_version_value != "":
             if ssh_version_value.isnumeric():
                 if int(ssh_version_value) < 1 or int(ssh_version_value) > 2:
                     mgbx.showinfo("Caution", "Please select given SSH version")
                 else:
-                    ssh_run_command = f"ip domain-name {ssh_domain_value.get()}\n crypto key generate rsa\n {version_selection(ssh_version_value)}\n yes \n line vty 0 4\n transport input all\n login local\n exit\n"
+                    ssh_run_command = f"ip domain-name {ssh_domain_value}\n crypto key generate rsa\n {version_selection(ssh_version_value)}\n yes \n line vty 0 5\n transport input all\n login local\n exit\n"
                     print(ssh_run_command)
-                    # scr1 = SshCiscoRouter("192.168.33.133", "huzaifa", "123")
                     conn.add_commands(ssh_run_command)
             else:
                 mgbx.showinfo("Caution", "SSH version must be numeric")
         else:
             mgbx.showinfo("Caution", "Please Fill required fields")
 
-
-    ssh_config_error_checking(ssh_domain_value.get(), ssh_version_value.get())
-
+    ssh_config_error_checking(ssh_domain_value, ssh_version_value)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+"""
 
     # print(new_name_value)
     # print(password_value)
@@ -182,3 +167,5 @@ def ssh_config(ssh_domain_value, ssh_version_value):
     # password_value = password_value.get()
     # type_value = type_value.get()
     # privilige_value = privilige_value.get()
+
+"""

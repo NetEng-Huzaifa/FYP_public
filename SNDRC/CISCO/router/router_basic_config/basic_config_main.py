@@ -39,7 +39,7 @@ def basicConfig():
 
     hostname_entry.grid(row=0, column=1, padx=20)
     # Buttons Section
-    hostname_run_button = tk.Button(hostname_frame, text="Execute", width=12, command=lambda: hostname_config(hostname_value))
+    hostname_run_button = tk.Button(hostname_frame, text="Execute", width=12, command=lambda: hostname_config(hostname_value.get()))
 
     hostname_run_button.grid(row=2, column=3, padx=20, pady=10, sticky=tk.E)
 
@@ -227,6 +227,9 @@ def basicConfig():
     # Reset Buttons Section
     reset_button = tk.Button(reset_frame, text="Reset", width=12, command=lambda: device_reset())
     reset_button.grid(row=0, column=1, padx=20, pady=10, sticky=tk.E)
+    # Reload Buttons Section
+    reload_button = tk.Button(reset_frame, text="Reload", width=12, command=lambda: device_reload())
+    reload_button.grid(row=0, column=2, padx=20, pady=10, sticky=tk.E)
 
     # =============================SSH Section================================
     ssh_frame = tk.LabelFrame(ssh_main_frame, text="Configure SSH:")
@@ -250,9 +253,9 @@ def basicConfig():
     ssh_version_combobox.grid(row=0, column=3, padx=20)
 
     # Buttons Section
-    ssh_cmd_button = tk.Button(ssh_frame, text="Commands", width=12)
-    ssh_run_button = tk.Button(ssh_frame, text="Execute", width=12, command=lambda: ssh_config(ssh_domain_value, ssh_version_value))
+    # ssh_cmd_button = tk.Button(ssh_frame, text="Commands", width=12)
+    ssh_run_button = tk.Button(ssh_frame, text="Execute", width=12, command=lambda: ssh_config(ssh_domain_value.get(), ssh_version_value.get()))
 
-    ssh_cmd_button.grid(row=2, column=0, padx=20, pady=15, sticky=tk.W)
-    ssh_run_button.grid(row=2, column=3, padx=20, sticky=tk.E)
+    # ssh_cmd_button.grid(row=2, column=0, padx=20, pady=15, sticky=tk.W)
+    ssh_run_button.grid(row=2, column=3, padx=20, pady=15, sticky=tk.E)
 
