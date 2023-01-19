@@ -3,6 +3,8 @@ from CISCO.router.router_main_frames import *
 from .interface_config_functions import *
 from CISCO.router.access_cisco_router.access_cisco_router_ssh import *
 import re
+from CISCO.router.get_info_from_device import interface_info
+
 
 def interface():
     notebook = ttk.Notebook(right_main_frame)
@@ -35,10 +37,29 @@ def interface():
     # Entries Section
     interface_value = tk.StringVar()
 
-    interface_entry = ttk.Combobox(interface_frame, values = re.findall(r"^[A-Za-z].+?[\d/.]+", conn.get_info_from_router("sh int des"), re.MULTILINE), textvariable = interface_value)
+    interface_entry = ttk.Combobox(interface_frame, values = re.findall(r"^[A-Za-z].+?[\d/.]+", conn.get_info_from_router("sh ip int br"), re.MULTILINE), textvariable = interface_value)
 
-    interface_entry.grid(row=0, column=1, padx=20)
+    interface_entry.grid(row=0, column=1, padx=20, pady=10)
     # Buttons Section
     interface_run_button = tk.Button(interface_frame, text="Execute", width=12, command=lambda: interface_config(hostname_value))
+
+    interface_run_button.grid(row=2, column=3, padx=20, pady=10, sticky=tk.E)
+
+
+    # ===========> Default interface section
+    defaultInterface_frame = tk.LabelFrame(interface_main_frame, text="DEFAULT INTERFACE ")
+    defaultInterface_frame.pack(fill=tk.X, padx=20, pady=15)
+    # label section
+    defaultInterface_label = tk.Label(defaultInterface_frame, text="Interface(port) : ")
+
+    defaultInterface_label.grid(row=0, column=0)
+    # Entries Section
+    defaultInterface_value = tk.StringVar()
+
+    defaultInterface_entry = ttk.Combobox(defaultInterface_frame, values = interface_info, textvariable = defaultInterface_value)
+
+    defaultInterface_entry.grid(row=0, column=1, padx=20, pady=10)
+    # Buttons Section
+    interface_run_button = tk.Button(defaultInterface_frame, text="Execute", width=12, command=lambda: interface_config(hostname_value))
 
     interface_run_button.grid(row=2, column=3, padx=20, pady=10, sticky=tk.E)

@@ -1,10 +1,10 @@
 import tkinter as tk
 
 #temporary import will delete when complete
-# import os
-# for i in range(1, 3):
-#     os.chdir("..")
-# print(os.getcwd())
+import os
+for i in range(1, 3):
+    os.chdir("..")
+print(os.getcwd())
 
 with open("login_info.txt", "r") as f:
     var = f.readline()
