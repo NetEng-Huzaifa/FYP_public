@@ -11,11 +11,14 @@ def interface():
     notebook.pack(expand=True, anchor=tk.N, fill=tk.X)
     # create frames
     interface_main_frame = tk.Frame(notebook)
+    VirtualInterface_main_frame = tk.Frame(notebook)
 
     interface_main_frame.pack(fill='both', expand=True)
+    VirtualInterface_main_frame.pack(fill='both', expand=True)
 
     # add frames to notebook
     notebook.add(interface_main_frame, text='Interface Config')
+    notebook.add(VirtualInterface_main_frame, text='Virtual Interfaces')
 
     # =============================Interface Config Section================================
     # ===========> interface section
@@ -109,3 +112,50 @@ def interface():
     interface_run_button = tk.Button(defaultInterface_frame, text="Execute", width=12, command=lambda: interface_config(hostname_value))
 
     interface_run_button.grid(row=2, column=3, padx=20, pady=10, sticky=tk.E)
+
+
+
+    # =============================VirtualInterface Config Section================================
+    # ===========> loopback interface section
+    loopbackInterface_frame = tk.LabelFrame(VirtualInterface_main_frame, text="LOOPBACK INTERFACE ")
+    loopbackInterface_frame.pack(fill=tk.X, padx=20, pady=15)
+    # label section
+    loopbackInterface_number_label = tk.Label(loopbackInterface_frame, text="Interface No.(0-2147483647)")
+
+    loopbackInterface_number_label.grid(row=1, column=1)
+    # Entries Section
+    loopbackInterface_number_value = tk.StringVar()
+
+    loopbackInterface_number_entry = tk.Entry(loopbackInterface_frame, textvariable=loopbackInterface_number_value, width=30)
+
+    loopbackInterface_number_entry.grid(row=2, column=1, padx=20, pady=10)
+
+    # Buttons Section
+    loopbackInterface_run_button = tk.Button(loopbackInterface_frame, text="Execute", width=12, command=lambda: interface_config(hostname_value))
+
+    loopbackInterface_run_button.grid(row=3, column=3, padx=20, pady=10, sticky=tk.E)
+
+
+    # ===========> Sub interface section
+    subInterface_frame = tk.LabelFrame(VirtualInterface_main_frame, text="SUB INTERFACE ")
+    subInterface_frame.pack(fill=tk.X, padx=20, pady=15)
+    # label section
+    subInterface_label = tk.Label(subInterface_frame, text="Interface(port)")
+    subInterface_number_label = tk.Label(subInterface_frame, text="Interface No.(0-4294967295)")
+
+    subInterface_label.grid(row=1, column=1)
+    subInterface_number_label.grid(row=1, column=2)
+    # Entries Section
+    subInterface_value = tk.StringVar()
+    subInterface_number_value = tk.StringVar()
+
+    subInterface_entry = ttk.Combobox(subInterface_frame, values = interface_info, textvariable = subInterface_value, width=27)
+    subInterface_number_entry = tk.Entry(subInterface_frame, textvariable=subInterface_number_value, width=30)
+
+    subInterface_entry.grid(row=2, column=1, padx=20, pady=10)
+    subInterface_number_entry.grid(row=2, column=2, padx=20, pady=10)
+
+    # Buttons Section
+    subInterface_run_button = tk.Button(subInterface_frame, text="Execute", width=12, command=lambda: interface_config(hostname_value))
+
+    subInterface_run_button.grid(row=3, column=3, padx=20, pady=10, sticky=tk.E)
