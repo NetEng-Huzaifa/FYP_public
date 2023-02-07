@@ -1,0 +1,21 @@
+conf t
+int g2/0
+!ip add 192.168.100.1 255.255.255.0 
+ip add dhcp
+no shut
+exit
+
+username abc password 123
+enable password enablepass
+
+line vty 0 5
+transport input all
+login local
+password 123
+exit
+
+
+======================================
+username abc
+password 123
+Enpassword enablepass

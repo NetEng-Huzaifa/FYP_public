@@ -44,7 +44,7 @@ def ssh_config_using_telnet(ip, user, pwd, en_pwd, ssh_domain_value, ssh_version
         telnet.write(en_pwd.encode('ascii') + b'\n')
 
         telnet.write(b'configure terminal\n')
-        ssh_run_commands = f"ip domain-name {ssh_domain_value}\n crypto key generate rsa\n {version_selection(ssh_version_value)}\n yes \n line vty 0 4\n transport input all\n login local\n exit\n"
+        ssh_run_commands = f"ip domain-name {ssh_domain_value}\n crypto key generate rsa\n 800\n yes \n line vty 0 4\n transport input all\n login local\n exit\n"
         print(ssh_run_commands)
         telnet.write(ssh_run_commands.encode('ascii') + b'\n')
         telnet.write(b'end\n')

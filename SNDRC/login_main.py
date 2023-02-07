@@ -21,7 +21,7 @@ def login_button_press(ip, user, pwd, enable_pass, vendor, device, access_method
         if selection_device(vendor, device) == "Cisco Router":
             if access_method == "Telnet":
                 access_device_telnet(ip, user, pwd, enable_pass, vendor, device, access_method)
-            elif access_method == "SSH1" or "SSH2":
+            elif access_method == "SSH":
                 access_device_ssh(ip, user, pwd, enable_pass, vendor, device, access_method)
             else:
                 mgbx.showinfo("Selection missing", f"Select Method to access {vendor} {device}")
@@ -82,7 +82,7 @@ vendor_combobox = ttk.Combobox(top_frame, textvariable=vendor_value, values=["Ci
 vendor_combobox.grid(row=0, column=2, padx=20)
 #Access method Selection
 access_method_value = tk.StringVar()
-access_method_combobox = ttk.Combobox(top_frame, textvariable=access_method_value, values=["Telnet", "SSH1", "SSH2"], width=15)
+access_method_combobox = ttk.Combobox(top_frame, textvariable=access_method_value, values=["Telnet", "SSH"], width=15)
 access_method_combobox.grid(row=3, column=2)
 # Radiobuttons
 device_var = tk.StringVar()
