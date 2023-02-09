@@ -25,23 +25,51 @@ class SshDevice:
             print(self.ssh.find_prompt())
         except Exception as e:
             mgbx.showinfo("Error!", f"{e}")
-    # def reset_mode(self):
-    #     if self.ssh.config_mode():
-    #         self.ssh.exit_config_mode()
+    def reset_mode(self):
+        if self.ssh.config_mode():
+            print("before exit", self.ssh.find_prompt())
+            self.ssh.exit_config_mode()
+            print("after exit", self.ssh.find_prompt())
     def add_commands(self, commands):
-        # print(self.ssh.find_prompt())
+        print("1",self.ssh.find_prompt())
         # self.reset_mode()
-        # print(self.ssh.find_prompt())
-        # self.ssh.config_mode()
-        # print(self.ssh.find_prompt())
+        print("2",self.ssh.find_prompt())
+        self.ssh.config_mode()
+        print("3",self.ssh.find_prompt())
         # self.ssh.send_command(commands)
         self.ssh.send_config_set(commands)
-        # print(self.ssh.find_prompt())
+        print("4",self.ssh.find_prompt())
         # self.ssh.exit_config_mode()
-        # print(self.ssh.find_prompt())
+        print("5",self.ssh.find_prompt())
         # self.reset_mode()
-    def ssh_config_device(self ):
-        pass
+    def ssh_config_device(self, ssh_domain_value, version):
+        print(self.ssh.find_prompt())
+        self.ssh.send_command(f"ip domain-name {ssh_domain_value}")
+        output = self.ssh.send_command_timing(
+            command_string = "crypto key generate rsa",
+            strip_prompt=False,
+            strip_command=False
+        )
+        print(self.ssh.find_prompt())
+        if "You already have RSA keys defined" in output:
+            output += self.ssh.send_command_timing(
+                command_string="y",
+                strip_prompt=False,
+                strip_command=False
+            )
+        print(self.ssh.find_prompt())
+        if "How many bits in the modulus" in output:
+            output += self.ssh.send_command_timing(
+                command_string=f"{version}",
+                strip_prompt=False,
+                strip_command=False
+            )
+        print(self.ssh.find_prompt())
+        self.ssh.send_config_set(["line vty 0 15", "transport input all", "login local", "exit"])
+        print(self.ssh.find_prompt())
+        print()
+        print(output)
+        print()
     def save_device_commands(self):
         # self.ssh.send_command("copy run start", read_timeout=1)
         # self.ssh.send_command("yes")

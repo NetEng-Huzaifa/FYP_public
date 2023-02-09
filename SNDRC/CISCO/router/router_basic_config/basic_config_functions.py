@@ -1,4 +1,4 @@
-from tkinter import messagebox as mgbx
+# from tkinter import messagebox as mgbx
 from CISCO.router.access_cisco_router.access_cisco_router_ssh import *
 
 # ==============================System Section===============================
@@ -142,11 +142,11 @@ def ssh_config(ssh_domain_value, ssh_version_value):
         if ssh_domain_value and ssh_version_value != "":
             if ssh_version_value.isnumeric():
                 if int(ssh_version_value) < 1 or int(ssh_version_value) > 2:
-                    mgbx.showinfo("Caution", "Please select given SSH version")
+                    mgbx.showinfo("Selection Error!", "Please select given SSH version")
                 else:
-                    ssh_run_command = f"ip domain-name {ssh_domain_value}\n crypto key generate rsa\n {version_selection(ssh_version_value)}\n yes \n line vty 0 5\n transport input all\n login local\n exit\n"
-                    print(ssh_run_command)
-                    conn.add_commands(ssh_run_command)
+                    # ssh_run_command = f"ip domain-name {ssh_domain_value}\n crypto key generate rsa\n {version_selection(ssh_version_value)}\n yes \n line vty 0 5\n transport input all\n login local\n exit\n"
+                    # print(ssh_run_command)
+                    conn.ssh_config_device(ssh_domain_value, version_selection(ssh_version_value))
             else:
                 mgbx.showinfo("Caution", "SSH version must be numeric")
         else:
