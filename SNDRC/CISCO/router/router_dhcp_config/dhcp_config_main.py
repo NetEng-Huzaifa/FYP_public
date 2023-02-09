@@ -1,7 +1,7 @@
 from tkinter import ttk
 from CISCO.router.router_main_frames import *
 from CISCO.router.get_info_from_device import interface_info
-
+from .dhcp_config_function import *
 
 def dhcp():
     notebook = ttk.Notebook(right_main_frame)
@@ -41,7 +41,21 @@ def dhcp():
     # ===========> DHCP SERVER section
     def dhcp_service_decision(dhcp_service_value):
         if dhcp_service_value == "off":
-            pass
+            dhcpServerDisable_frame = tk.LabelFrame(dhcpServer_main_frame, text="DHCP SERVER DISABLE")
+            dhcpServerDisable_frame.pack(fill=tk.X, padx=20, pady=15)
+            # label section
+            dhcpServerDisable_pool_label = tk.Label(dhcpServerDisable_frame, text="Enter Network Pool : ")
+            dhcpServerDisable_pool_label.grid(row=1, column=1)
+
+            # Entries Section
+            dhcpServerDisable_pool_name_value = tk.StringVar()
+            dhcpServerDisable_pool_name_entry = tk.Entry(dhcpServerDisable_frame, textvariable=dhcpServerDisable_pool_name_value)
+            dhcpServerDisable_pool_name_entry.grid(row=3, column=1, padx=20, pady=10)
+
+            # Buttons Section
+            dhcpServerDisable_run_button = tk.Button(dhcpServerDisable_frame, text="Execute", bg="#ecebec", width=12, command=lambda: dhcpServerDisable_config(dhcpServerDisable_pool_name_value.get()))
+            dhcpServerDisable_run_button.grid(row=7, column=3, padx=20, pady=10, sticky=tk.E)
+
         elif dhcp_service_value == "on":
             dhcpServer_frame = tk.LabelFrame(dhcpServer_main_frame, text="DHCP SERVER")
             dhcpServer_frame.pack(fill=tk.X, padx=20, pady=15)
@@ -88,7 +102,7 @@ def dhcp():
 
 
             # Buttons Section
-            dhcpServer_run_button = tk.Button(dhcpServer_frame, text="Execute", bg="#ecebec", width=12, command=lambda: interface_config(hostname_value))
+            dhcpServer_run_button = tk.Button(dhcpServer_frame, text="Execute", bg="#ecebec", width=12, command=lambda: dhcpServer_config(dhcpServer_pool_name_value.get(), dhcpServer_pool_ip_value.get(), dhcpServer_pool_prefixLength_value.get(), dhcpServer_exclude_from_value.get(), dhcpServer_exclude_to_value.get(), dhcpServer_gateway_value.get()))
 
             dhcpServer_run_button.grid(row=7, column=3, padx=20, pady=10, sticky=tk.E)
 
