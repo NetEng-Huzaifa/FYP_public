@@ -37,7 +37,7 @@ class SshDevice:
         self.ssh.config_mode()
         print("3",self.ssh.find_prompt())
         # self.ssh.send_command(commands)
-        self.ssh.send_config_set(commands)
+        print(self.ssh.send_config_set(commands))
         print("4",self.ssh.find_prompt())
         # self.ssh.exit_config_mode()
         print("5",self.ssh.find_prompt())

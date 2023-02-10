@@ -122,6 +122,6 @@ def dhcp():
 
     dhcpClient_interface_entry.grid(row=0, column=1, padx=20, pady=10)
     # Buttons Section
-    interface_run_button = tk.Button(dhcpClient_frame, text="Execute", width=12, command=lambda: interface_config(hostname_value))
+    interface_run_button = tk.Button(dhcpClient_frame, text="Execute", width=12, command=lambda: dhcpClient_config(dhcpClient_interface_value.get()))
 
     interface_run_button.grid(row=2, column=3, padx=20, pady=10, sticky=tk.E)
