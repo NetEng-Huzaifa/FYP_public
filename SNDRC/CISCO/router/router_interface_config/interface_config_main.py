@@ -56,8 +56,7 @@ def interface():
     interface_keepalive_entry.grid(row=2, column=5, padx=20, pady=10)
 
     # Buttons Section
-    interface_run_button = tk.Button(interface_frame, text="Execute", width=12, command=lambda: interface_config(hostname_value))
-
+    interface_run_button = tk.Button(interface_frame, text="Execute", width=12, command=lambda: interface_config(interface_value.get(), interface_state_value.get(), interface_duplex_value.get(), interface_description_value.get(), interface_keepalive_value.get()))
     interface_run_button.grid(row=3, column=3, padx=20, pady=10, sticky=tk.E)
 
     # ===========> Serial interface section
@@ -90,7 +89,7 @@ def interface():
     # interface_serial_description_entry.grid(row=2, column=4, padx=20, pady=10)
 
     # Buttons Section
-    interface_serial_run_button = tk.Button(interface_serial_frame, text="Execute", width=12, command=lambda: interface_config(hostname_value))
+    interface_serial_run_button = tk.Button(interface_serial_frame, text="Execute", width=12, command=lambda: serial_interface_config(interface_serial_value.get(), interface_serial_encapsulation_value.get(), interface_serial_clockRate_value.get()))
 
     interface_serial_run_button.grid(row=3, column=3, padx=20, pady=10, sticky=tk.E)
 
@@ -109,7 +108,7 @@ def interface():
 
     defaultInterface_entry.grid(row=0, column=1, padx=20, pady=10)
     # Buttons Section
-    interface_run_button = tk.Button(defaultInterface_frame, text="Execute", width=12, command=lambda: interface_config(hostname_value))
+    interface_run_button = tk.Button(defaultInterface_frame, text="Execute", width=12, command=lambda: default_interface_config(defaultInterface_value.get()))
 
     interface_run_button.grid(row=2, column=3, padx=20, pady=10, sticky=tk.E)
 
