@@ -1,6 +1,6 @@
 from tkinter import ttk
 from CISCO.router.router_main_frames import *
-
+from .static_routes_config_funtions import *
 def static_routing():
     notebook = ttk.Notebook(right_main_frame)
     notebook.pack(expand=True, anchor=tk.N, fill=tk.X)
@@ -39,7 +39,7 @@ def static_routing():
     static_gateway_entry.grid(row=2, column=3, padx=20, pady=10)
 
     # Buttons Section
-    static_run_button = tk.Button(static_frame, text="Execute", bg="#ecebec", width=12, command=lambda: interface_config(hostname_value))
+    static_run_button = tk.Button(static_frame, text="Execute", bg="#ecebec", width=12, command=lambda: staticRoute_config(static_network_value.get(), static_prefixLength_value.get(), static_gateway_value.get()))
     static_run_button.grid(row=5, column=3, padx=20, pady=10, sticky=tk.E)
 
 
@@ -60,5 +60,5 @@ def static_routing():
     static_default_gateway_entry.grid(row=2, column=3, padx=20, pady=10)
 
     # Buttons Section
-    static_default_run_button = tk.Button(static_default_frame, text="Execute", bg="#ecebec", width=12, command=lambda: interface_config(hostname_value))
+    static_default_run_button = tk.Button(static_default_frame, text="Execute", bg="#ecebec", width=12, command=lambda: staticDefault_config(static_default_gateway_value.get()))
     static_default_run_button.grid(row=5, column=3, padx=20, pady=10, sticky=tk.E)
