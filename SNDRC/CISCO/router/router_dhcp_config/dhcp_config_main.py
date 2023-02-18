@@ -44,7 +44,7 @@ def dhcp():
             dhcpServerDisable_frame = tk.LabelFrame(dhcpServer_main_frame, text="DHCP SERVER DISABLE")
             dhcpServerDisable_frame.pack(fill=tk.X, padx=20, pady=15)
             # label section
-            dhcpServerDisable_pool_label = tk.Label(dhcpServerDisable_frame, text="Enter Network Pool : ")
+            dhcpServerDisable_pool_label = tk.Label(dhcpServerDisable_frame, text="Enter Pool Name: ")
             dhcpServerDisable_pool_label.grid(row=1, column=1)
 
             # Entries Section

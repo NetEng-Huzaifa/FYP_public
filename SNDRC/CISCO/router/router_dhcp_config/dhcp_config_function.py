@@ -12,7 +12,8 @@ def dhcpServer_config(dhcpServer_pool_name_value, dhcpServer_pool_ip_value, dhcp
                f"ip dhcp pool {dhcpServer_pool_name_value}",
                f"network {dhcpServer_pool_ip_value} {get_subnetmask(dhcpServer_pool_prefixLength_value)}",
                f"default-router {dhcpServer_gateway_value}",
-               f"exit"]
+               f"exit",
+               f"service dhcp"]
     print(dhcp_on)
     conn.add_commands(dhcp_on)
 def dhcpClient_config(dhcpClient_interface_value):

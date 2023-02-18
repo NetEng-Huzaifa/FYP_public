@@ -130,7 +130,7 @@ def interface():
     loopbackInterface_number_entry.grid(row=2, column=1, padx=20, pady=10)
 
     # Buttons Section
-    loopbackInterface_run_button = tk.Button(loopbackInterface_frame, text="Execute", width=12, command=lambda: interface_config(hostname_value))
+    loopbackInterface_run_button = tk.Button(loopbackInterface_frame, text="Execute", width=12, command=lambda: loopbackinterface_config(loopbackInterface_number_value.get()))
 
     loopbackInterface_run_button.grid(row=3, column=3, padx=20, pady=10, sticky=tk.E)
 
@@ -155,6 +155,6 @@ def interface():
     subInterface_number_entry.grid(row=2, column=2, padx=20, pady=10)
 
     # Buttons Section
-    subInterface_run_button = tk.Button(subInterface_frame, text="Execute", width=12, command=lambda: interface_config(hostname_value))
+    subInterface_run_button = tk.Button(subInterface_frame, text="Execute", width=12, command=lambda: subinterface_config(subInterface_value.get(), subInterface_number_value.get()))
 
     subInterface_run_button.grid(row=3, column=3, padx=20, pady=10, sticky=tk.E)
