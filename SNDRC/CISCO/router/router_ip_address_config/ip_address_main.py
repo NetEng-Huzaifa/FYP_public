@@ -1,8 +1,8 @@
 from tkinter import ttk
 from CISCO.router.router_main_frames import *
-from CISCO.router.access_cisco_router.access_cisco_router_ssh import *
+# from CISCO.router.access_cisco_router.access_cisco_router_ssh import *
 import re
-
+from .ipAddress_config_functions import *
 
 def ip_address():
     notebook = ttk.Notebook(right_main_frame)
@@ -53,6 +53,6 @@ def ip_address():
     ip_priority_entry.grid(row=4, column=3, padx=10, pady=10)
 
     # Buttons Section
-    interface_run_button = tk.Button(ipAddress_frame, text="Execute", width=12, command=lambda: interface_config(hostname_value))
+    ipAddress_run_button = tk.Button(ipAddress_frame, text="Execute", width=12, command=lambda: ipAddress_config(ip_interface_value.get(), ipAddress_value.get(), ip_prefixLength_value.get(), ip_priority_value.get()))
 
-    interface_run_button.grid(row=5, column=3, padx=20, pady=10, sticky=tk.E)
+    ipAddress_run_button.grid(row=5, column=3, padx=20, pady=10, sticky=tk.E)
