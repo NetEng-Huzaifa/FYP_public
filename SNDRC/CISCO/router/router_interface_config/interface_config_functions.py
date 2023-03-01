@@ -94,5 +94,8 @@ def loopbackinterface_config(loopbackInterface_number_value):
 def subinterface_config(subInterface_value, subInterface_number_value):
     conn.add_commands(f"interface {subInterface_value}.{subInterface_number_value}")
 
+def sv_interface_config(sv_interface_number_value):
+    conn.add_commands(f"interface vlan {sv_interface_number_value}")
+
 
 

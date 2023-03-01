@@ -3,7 +3,7 @@ from CISCO.router.router_main_frames import *
 from .interface_config_functions import *
 from CISCO.router.access_cisco_router.access_cisco_router_ssh import *
 import re
-from CISCO.router.get_info_from_device import interface_info
+from CISCO.router.get_info_from_device import interface_info, vlan_info
 
 
 def interface():
@@ -158,3 +158,23 @@ def interface():
     subInterface_run_button = tk.Button(subInterface_frame, text="Execute", width=12, command=lambda: subinterface_config(subInterface_value.get(), subInterface_number_value.get()))
 
     subInterface_run_button.grid(row=3, column=3, padx=20, pady=10, sticky=tk.E)
+
+    # =============================SVI Config Section================================
+    # ===========> sv_interface section
+    sv_interface_frame = tk.LabelFrame(VirtualInterface_main_frame, text="SWITCH VIRTUAL INTERFACE ")
+    sv_interface_frame.pack(fill=tk.X, padx=20, pady=15)
+    # label section
+    sv_interface_number_label = tk.Label(sv_interface_frame, text="Select the VLAN")
+
+    sv_interface_number_label.grid(row=1, padx=20, column=1)
+    # Entries Section
+    sv_interface_number_value = tk.StringVar()
+
+    sv_interface_number_entry = ttk.Combobox(sv_interface_frame, values = vlan_info, textvariable = sv_interface_number_value, width=27)
+
+    sv_interface_number_entry.grid(row=2, column=1, padx=20, pady=10)
+
+    # Buttons Section
+    sv_interface_run_button = tk.Button(sv_interface_frame, text="Execute", width=12, command=lambda: sv_interface_config(sv_interface_number_value.get()))
+
+    sv_interface_run_button.grid(row=3, column=3, padx=20, pady=10, sticky=tk.E)
