@@ -6,6 +6,9 @@ from CISCO.router.router_dns_config.dns_config_main import *
 from CISCO.router.router_static_config.static_routes_config_main import *
 from CISCO.router.router_dynamic_config.dynamic_routing_config_main import *
 from CISCO.router.router_acl_config.acl_config_main import *
+from CISCO.router.switch_vlan_config.vlan_config_main import *
+from CISCO.router.switch_vtp_config.vtp_config_main import *
+from CISCO.router.switch_ports_config.ports_config_main import *
 
 
 def hide_indicate():
@@ -17,6 +20,10 @@ def hide_indicate():
     static_routing_config_button.config(bg="#d5d5d5", fg="black")
     dynamic_routing_config_button.config(bg="#d5d5d5", fg="black")
     acl_config_button.config(bg="#d5d5d5", fg="black")
+    vlan_config_button.config(bg="#d5d5d5", fg="black")
+    vtp_config_button.config(bg="#d5d5d5", fg="black")
+    ports_config_button.config(bg="#d5d5d5", fg="black")
+
 
 def delete_pages():
     for frame in right_main_frame.winfo_children():
@@ -44,6 +51,12 @@ dynamic_routing_config_button = tk.Button(left_button_frame, text="Routing Proto
 dynamic_routing_config_button.grid()
 acl_config_button = tk.Button(left_button_frame, text="ACL", font=("Arial", 12), bg="#d5d5d5", width=13, command=lambda: indicate(acl_config_button, acl))
 acl_config_button.grid()
+vlan_config_button = tk.Button(left_button_frame, text="VLAN", font=("Arial", 12), bg="#d5d5d5", width=13, command=lambda: indicate(vlan_config_button, vlan))
+vlan_config_button.grid()
+vtp_config_button = tk.Button(left_button_frame, text="VTP", font=("Arial", 12), bg="#d5d5d5", width=13, command=lambda: indicate(vtp_config_button, vtp))
+vtp_config_button.grid()
+ports_config_button = tk.Button(left_button_frame, text="Ports", font=("Arial", 12), bg="#d5d5d5", width=13, command=lambda: indicate(ports_config_button, ports))
+ports_config_button.grid()
 
 
 

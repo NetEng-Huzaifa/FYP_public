@@ -37,7 +37,7 @@ def clockSet_config(clock_hour_value, clock_min_value, clock_sec_value, clock_da
     def clockSet_run_config(clock_hour_value, clock_min_value, clock_sec_value, clock_date_value, clock_month_value, clock_year_value):
         clockSet_cmd = f"clock set {clock_hour_value}:{clock_min_value}:{clock_sec_value} {clock_date_value} {clock_month_value} {clock_year_value}"
         print(clockSet_cmd)
-        conn.add_commands(clockSet_cmd)
+        conn.clock_cmd(clockSet_cmd)
     def clock_month_name(clock_month_value):
         months = {"1":"Jan", "2":"Feb", "3":"Mar", "4":"Apr", "5":"May", "6":"Jun", "7":"July", "8":"Aug", "9":"Sep", "10":"Oct", "11":"Nov", "12":"Dec", }
         return months[clock_month_value]

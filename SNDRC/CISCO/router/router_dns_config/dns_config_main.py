@@ -1,5 +1,6 @@
 from tkinter import ttk
 from CISCO.router.router_main_frames import *
+from .dns_config_function import *
 
 def dns():
     notebook = ttk.Notebook(right_main_frame)
@@ -37,6 +38,7 @@ def dns():
 
     def dns_service_decision(dns_service_value):
         if dns_service_value == "off":
+            dns_service_off()
             pass
         elif dns_service_value == "on":
             dnsServer_second_frame = tk.LabelFrame(dnsServer_main_frame, text="DNS SERVER")
@@ -60,8 +62,8 @@ def dns():
 
 
             # Buttons Section
-            dnsServer_add_button = tk.Button(dnsServer_second_frame, text="ADD", bg="#ecebec", width=12, command=lambda: interface_config(hostname_value))
-            dnsServer_run_button = tk.Button(dnsServer_second_frame, text="Execute", bg="#ecebec", width=12, command=lambda: interface_config(hostname_value))
+            dnsServer_add_button = tk.Button(dnsServer_second_frame, text="ADD", bg="#ecebec", width=12, command=lambda: dnsServer_add_config(dnsServer_pool_name_value.get(), dnsServer_pool_ip_value.get()))
+            dnsServer_run_button = tk.Button(dnsServer_second_frame, text="Execute", bg="#ecebec", width=12, command=lambda: dnsServer_run_config())
 
             dnsServer_add_button.grid(row=4, column=3, padx=20, pady=10, sticky=tk.E)
             dnsServer_run_button.grid(row=5, column=3, padx=20, pady=10, sticky=tk.E)
@@ -91,5 +93,5 @@ def dns():
     dnsClient_ServerIP_secondary_entry.grid(row=3, column=2, padx=20, pady=10)
 
     # Buttons Section
-    dnsClient_run_button = tk.Button(dnsClient_frame, text="Execute", bg="#ecebec", width=12, command=lambda: interface_config(hostname_value))
+    dnsClient_run_button = tk.Button(dnsClient_frame, text="Execute", bg="#ecebec", width=12, command=lambda: dnsClient_config(dnsClient_ServerIP_primary_value.get(), dnsClient_ServerIP_secondary_value.get()))
     dnsClient_run_button.grid(row=5, column=3, padx=20, pady=10, sticky=tk.E)

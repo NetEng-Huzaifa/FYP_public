@@ -1,7 +1,7 @@
-import subprocess
 import tkinter as tk
 from tkinter import ttk
 from login_functions import *
+import subprocess
 
 def access_device_telnet(ip, user, pwd, enable_pass, vendor, device, access_method):
     if pre_telnet_device(ip, user, pwd) == "Successful":

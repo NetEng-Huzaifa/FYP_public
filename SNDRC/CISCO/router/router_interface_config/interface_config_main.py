@@ -141,21 +141,26 @@ def interface():
     # label section
     subInterface_label = tk.Label(subInterface_frame, text="Interface(port)")
     subInterface_number_label = tk.Label(subInterface_frame, text="Interface No.(0-4294967295)")
+    subInterface_vlan_label = tk.Label(subInterface_frame, text="VLAN")
 
     subInterface_label.grid(row=1, column=1)
     subInterface_number_label.grid(row=1, column=2)
+    subInterface_vlan_label.grid(row=1, column=3)
     # Entries Section
     subInterface_value = tk.StringVar()
     subInterface_number_value = tk.StringVar()
+    subInterface_vlan_value = tk.StringVar()
 
     subInterface_entry = ttk.Combobox(subInterface_frame, values = interface_info, textvariable = subInterface_value, width=27)
     subInterface_number_entry = tk.Entry(subInterface_frame, textvariable=subInterface_number_value, width=30)
+    subInterface_vlan_entry = tk.Entry(subInterface_frame, textvariable=subInterface_vlan_value, width=30)
 
     subInterface_entry.grid(row=2, column=1, padx=20, pady=10)
     subInterface_number_entry.grid(row=2, column=2, padx=20, pady=10)
+    subInterface_vlan_entry.grid(row=2, column=3, padx=20, pady=10)
 
     # Buttons Section
-    subInterface_run_button = tk.Button(subInterface_frame, text="Execute", width=12, command=lambda: subinterface_config(subInterface_value.get(), subInterface_number_value.get()))
+    subInterface_run_button = tk.Button(subInterface_frame, text="Execute", width=12, command=lambda: subinterface_config(subInterface_value.get(), subInterface_number_value.get(), subInterface_vlan_value.get()))
 
     subInterface_run_button.grid(row=3, column=3, padx=20, pady=10, sticky=tk.E)
 

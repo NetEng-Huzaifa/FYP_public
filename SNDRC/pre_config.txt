@@ -1,20 +1,29 @@
 conf t
-int g2/0
-!ip add 192.168.100.1 255.255.255.0 
-ip add dhcp
+!int Et0/0
+int GigabitEthernet3/0/1
+no switchport
+ip add 192.168.33.150 255.255.255.0
+!ip add dhcp
 no shut
 exit
 
 username abc password 123
 enable password enablepass
 
-line vty 0 5
+line vty 0 4
 transport input all
 login local
 password 123
 exit
 
 
+ip domain-name CORVIT
+crypto key generate rsa
+800
+line vty 0 4
+transport input all
+login local
+exit
 ======================================
 username abc
 password 123

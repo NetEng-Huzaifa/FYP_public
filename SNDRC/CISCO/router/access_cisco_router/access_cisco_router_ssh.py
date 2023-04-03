@@ -30,6 +30,8 @@ class SshDevice:
             print("before exit", self.ssh.find_prompt())
             self.ssh.exit_config_mode()
             print("after exit", self.ssh.find_prompt())
+    def clock_cmd(self, cmd):
+        self.ssh.send_command(cmd)
     def add_commands(self, commands):
         print("1",self.ssh.find_prompt())
         # self.reset_mode()

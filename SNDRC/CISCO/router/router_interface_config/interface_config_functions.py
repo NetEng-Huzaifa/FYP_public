@@ -91,8 +91,8 @@ def loopbackinterface_config(loopbackInterface_number_value):
     else:
         mgbx.showinfo("Error", "Please select the interface first")
 
-def subinterface_config(subInterface_value, subInterface_number_value):
-    conn.add_commands(f"interface {subInterface_value}.{subInterface_number_value}")
+def subinterface_config(subInterface_value, subInterface_number_value, subInterface_vlan_value):
+    conn.add_commands([f"interface {subInterface_value}.{subInterface_number_value}",f"encapsulation dot {subInterface_vlan_value}"])
 
 def sv_interface_config(sv_interface_number_value):
     conn.add_commands(f"interface vlan {sv_interface_number_value}")
