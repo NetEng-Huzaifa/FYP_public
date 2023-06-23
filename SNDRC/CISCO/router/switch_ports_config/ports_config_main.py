@@ -3,7 +3,7 @@ from CISCO.router.router_main_frames import *
 from .ports_config_function import *
 from tkinter import messagebox as mgbx
 from CISCO.router.get_info_from_device import interface_info, vlan_info
-
+import re
 def ports():
     notebook = ttk.Notebook(right_main_frame)
     notebook.pack(expand=True, anchor=tk.N, fill=tk.X)
@@ -60,7 +60,7 @@ def ports():
                     access_ports_vlan_value = tk.StringVar()
 
                     access_ports_type_entry = ttk.Combobox(access_ports_frame, values = ["data", "voice"], textvariable = access_ports_type_value)
-                    access_ports_vlan_entry = ttk.Combobox(access_ports_frame, values = vlan_info, textvariable = access_ports_vlan_value)
+                    access_ports_vlan_entry = ttk.Combobox(access_ports_frame, values = re.findall(r"^[\d]+", conn.get_info_from_router("sh vlan br"), re.MULTILINE), textvariable = access_ports_vlan_value)
 
                     access_ports_type_entry.grid(row=2, column=1, padx=10, pady=10)
                     access_ports_vlan_entry.grid(row=2, column=2, padx=10, pady=10)

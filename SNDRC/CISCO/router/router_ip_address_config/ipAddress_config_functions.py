@@ -6,6 +6,7 @@ def ipAddress_config(ip_interface_value, ipAddress_value, ip_prefixLength_value,
     ipAddress_command_list = []
     if ip_interface_value != "":
         ipAddress_command_list.append(f"interface {ip_interface_value}")
+        ipAddress_command_list.append(f"no switchport")
         # ipAddress and prefix length section
         if ipAddress_value != "":
             if ip_prefixLength_value != "":

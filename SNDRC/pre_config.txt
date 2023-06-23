@@ -1,14 +1,14 @@
 conf t
-!int Et0/0
-int GigabitEthernet3/0/1
+int Et3/0
+!int GigabitEthernet3/0/1
 no switchport
-ip add 192.168.33.150 255.255.255.0
-!ip add dhcp
+!ip add 192.168.33.150 255.255.255.0
+ip add dhcp
 no shut
 exit
 
 username abc password 123
-enable password enablepass
+enable password 123
 
 line vty 0 4
 transport input all

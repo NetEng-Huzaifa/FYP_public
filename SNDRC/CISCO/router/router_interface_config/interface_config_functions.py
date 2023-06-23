@@ -79,6 +79,23 @@ def serial_interface_config(interface_serial_value, interface_serial_encapsulati
 def default_interface_config(defaultInterface_value):
     conn.add_commands(f"default interface {defaultInterface_value}")
 
+def sw_interface_config(swInterface_value, sw_select_value):
+    sw_int_list = []
+    if swInterface_value != "" and sw_select_value != "":
+        sw_int_list.append(f"interface {swInterface_value}")
+        if sw_select_value == "enable(L2)":
+            sw_int_list.append("switchport")
+        elif sw_select_value == "disable(L3)":
+            sw_int_list.append("no switchport")
+        else:
+            mgbx.showinfo("Error", "Please select correct given option")
+        print(sw_int_list)
+        conn.add_commands(sw_int_list)
+    else:
+        mgbx.showinfo("Error", "Both fields are required")
+
+
+
 def loopbackinterface_config(loopbackInterface_number_value):
     if loopbackInterface_number_value != "":
         if str(loopbackInterface_number_value).isnumeric():

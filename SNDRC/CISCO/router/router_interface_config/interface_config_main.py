@@ -114,6 +114,32 @@ def interface():
 
 
 
+    # ===========> Switchport interface section
+    swInterface_frame = tk.LabelFrame(interface_main_frame, text="SWITCHPORT")
+    swInterface_frame.pack(fill=tk.X, padx=20, pady=15)
+    # label section
+    swInterface_label = tk.Label(swInterface_frame, text="Interface(port) : ")
+    sw_select_label = tk.Label(swInterface_frame, text="Switchport : ")
+
+    swInterface_label.grid(row=1, column=1)
+    sw_select_label.grid(row=1, column=2)
+    # Entries Section
+    swInterface_value = tk.StringVar()
+    sw_select_value = tk.StringVar()
+
+    swInterface_entry = ttk.Combobox(swInterface_frame, values = interface_info, textvariable = swInterface_value)
+    sw_select_entry = ttk.Combobox(swInterface_frame, values = ["enable(L2)", "disable(L3)"], textvariable = sw_select_value)
+
+    swInterface_entry.grid(row=2, column=1, padx=20, pady=10)
+    sw_select_entry.grid(row=2, column=2, padx=20, pady=10)
+
+    # Buttons Section
+    interface_run_button = tk.Button(swInterface_frame, text="Execute", width=12, command=lambda: sw_interface_config(swInterface_value.get(), sw_select_value.get()))
+
+    interface_run_button.grid(row=2, column=3, padx=20, pady=10, sticky=tk.E)
+
+
+
     # =============================VirtualInterface Config Section================================
     # ===========> loopback interface section
     loopbackInterface_frame = tk.LabelFrame(VirtualInterface_main_frame, text="LOOPBACK INTERFACE ")
