@@ -1,5 +1,5 @@
 conf t
-int Et3/0
+int f0/0
 !int GigabitEthernet3/0/1
 no switchport
 !ip add 192.168.33.150 255.255.255.0

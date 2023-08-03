@@ -33,16 +33,16 @@ class SshDevice:
     def clock_cmd(self, cmd):
         self.ssh.send_command(cmd)
     def add_commands(self, commands):
-        print("1",self.ssh.find_prompt())
+        print("1", self.ssh.find_prompt())
         # self.reset_mode()
-        print("2",self.ssh.find_prompt())
+        print("2", self.ssh.find_prompt())
         self.ssh.config_mode()
-        print("3",self.ssh.find_prompt())
+        print("3", self.ssh.find_prompt())
         # self.ssh.send_command(commands)
         print(self.ssh.send_config_set(commands))
-        print("4",self.ssh.find_prompt())
+        print("4", self.ssh.find_prompt())
         # self.ssh.exit_config_mode()
-        print("5",self.ssh.find_prompt())
+        print("5", self.ssh.find_prompt())
         # self.reset_mode()
     def ssh_config_device(self, ssh_domain_value, version):
         print(self.ssh.find_prompt())
