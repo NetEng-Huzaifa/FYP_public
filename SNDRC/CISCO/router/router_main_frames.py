@@ -11,7 +11,7 @@ with open("login_info.txt", "r") as f:
     info = var.split(",")
 
 router_root = tk.Tk()
-router_root.title(f"SNDRC_{info[4].upper()}_{info[0]}")
+router_root.title(f"SRCND_{info[4].upper()}_{info[0]}")
 router_root.geometry("1330x800")
 
 
