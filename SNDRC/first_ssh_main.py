@@ -57,7 +57,7 @@ def ssh_config_using_telnet(ip, user, pwd, en_pwd, ssh_domain_value, ssh_version
         mgbx.showinfo("Access Denied", f"{e}")
 
 
-def ssh_config_error_checking(ssh_domain_value, ssh_version_value):
+def ssh_config_error_checking(ssh_domain_value, ssh_version_value = "2"):
     if ssh_domain_value and ssh_version_value != "":
         if ssh_version_value.isnumeric():
             if int(ssh_version_value) < 1 or int(ssh_version_value) > 2:
@@ -85,24 +85,24 @@ ssh_frame = tk.LabelFrame(main_frame, text="Configure SSH:")
 ssh_frame.pack(fill=tk.X, padx=20, pady=15)
 # Save label section
 ssh_domain_label = tk.Label(ssh_frame, text="IP domain-name : ")
-ssh_version_label = tk.Label(ssh_frame, text="SSH Version : ")
+# ssh_version_label = tk.Label(ssh_frame, text="SSH Version : ")
 
 ssh_domain_label.grid(row=1, column=1)
-ssh_version_label.grid(row=2, column=1)
+# ssh_version_label.grid(row=2, column=1)
 
 # Entries Section
 ssh_domain_value = tk.StringVar()
-ssh_version_value = tk.StringVar()
+# ssh_version_value = tk.StringVar()
 
 domain_entry = tk.Entry(ssh_frame, textvariable=ssh_domain_value)
-ssh_version_combobox = ttk.Combobox(ssh_frame, values=["1", "2"], textvariable=ssh_version_value)
+# ssh_version_combobox = ttk.Combobox(ssh_frame, values=["1", "2"], textvariable=ssh_version_value)
 
 domain_entry.grid(row=1, column=2, padx=20)
-ssh_version_combobox.grid(row=2, column=2, padx=20)
+# ssh_version_combobox.grid(row=2, column=2, padx=20)
 
 # Buttons Section
 # ssh_cmd_button = tk.Button(ssh_frame, text="Commands", width=12)
-ssh_run_button = tk.Button(ssh_frame, text="Execute", width=12, command=lambda:ssh_config_error_checking(ssh_domain_value.get(), ssh_version_value.get()))
+ssh_run_button = tk.Button(ssh_frame, text="Execute", width=12, command=lambda:ssh_config_error_checking(ssh_domain_value.get()))
 
 # ssh_cmd_button.grid(row=3, column=1, padx=20, pady=15,sticky=tk.W)
 ssh_run_button.grid(row=3, column=2, padx=20, sticky=tk.E)
