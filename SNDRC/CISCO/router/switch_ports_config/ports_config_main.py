@@ -31,7 +31,7 @@ def ports():
     ports_mode_value = tk.StringVar()
 
     ports_interface_entry = ttk.Combobox(ports_frame, values=interface_info, textvariable=ports_interface_value)
-    ports_mode_entry = ttk.Combobox(ports_frame, values=["trunk", "access"], textvariable=ports_mode_value)
+    ports_mode_entry = ttk.Combobox(ports_frame, values=["access", "trunk", "dynamic"], textvariable=ports_mode_value)
 
     ports_interface_entry.grid(row=2, column=1, padx=10, pady=10)
     ports_mode_entry.grid(row=2, column=2, padx=20, pady=10)
@@ -42,8 +42,8 @@ def ports():
 
 
     def post_ports_decision():
-        if ports_interface_value.get() != "":
-            if ports_mode_value.get() == "trunk" or ports_mode_value.get() == "access":
+        if ports_interface_value.get():
+            if ports_mode_value.get() in ["access", "trunk", "dynamic"]:
                 if ports_mode_value.get() == "access":
                     # ===========> access port section
                     access_ports_frame = tk.LabelFrame(ports_main_frame, text="SWITCHPORT MODE ACCESS")
@@ -70,41 +70,62 @@ def ports():
 
                     access_config_run_button.grid(row=3, column=3, padx=20, pady=10, sticky=tk.E)
 
-                elif ports_mode_value == "trunk":
-                    # ===========> trunk ports section
-                    trunk_ports_frame = tk.LabelFrame(ports_main_frame, text="SWITCHPORT MODE TRUNK")
+                elif ports_mode_value.get() == "trunk":
+                    # ===========> access port section
+                    trunk_ports_frame = tk.LabelFrame(ports_main_frame, text="SWITCHPORT MODE TRUNK ALLOWED")
                     trunk_ports_frame.pack(fill=tk.X, padx=20, pady=15)
                     # label section
-                    trunk_ports_mode_label = tk.Label(trunk_ports_frame, text="switchport mode")
-                    # ports_mode_label = tk.Label(ports_frame, text="ports mode")
-                    # ports_pruning_label = tk.Label(ports_frame, text="pruning")
+                    trunk_ports_allowed_vlan_label = tk.Label(trunk_ports_frame, text="Single VLAN")
+                    trunk_ports_allowed_vlan_add_label = tk.Label(trunk_ports_frame, text="Multiple VLAN")
+                    info_label = tk.Label(trunk_ports_frame, text="Just click EXECUTE if you don't want to add allowed VLAN")
+                    MultipleVlan_info = tk.Label(trunk_ports_frame, text="comma seperated i.e 2,3,4")
 
-
-                    trunk_ports_mode_label.grid(row=1, column=1)
-                    # ports_mode_label.grid(row=1, column=2)
-                    # ports_pruning_label.grid(row=1, column=3)
+                    trunk_ports_allowed_vlan_label.grid(row=1, column=1)
+                    trunk_ports_allowed_vlan_add_label.grid(row=1, column=2)
+                    info_label.grid(row=0, column=1)
+                    MultipleVlan_info.grid(row=2, column=3)
 
                     # Entries Section
-                    trunk_ports_mode_value = tk.StringVar()
-                    # ports_mode_value = tk.StringVar()
-                    # ports_pruning_value = tk.StringVar()
+                    trunk_ports_allowed_vlan_value = tk.StringVar()
+                    trunk_ports_allowed_vlan_add_value = tk.StringVar()
 
-                    trunk_ports_mode_entry = ttk.Combobox(trunk_ports_frame, values=["trunk", "access"], textvariable=trunk_ports_mode_value)
-                    # ports_mode_entry = ttk.Combobox(ports_frame, values=["client", "server", "transparent"], textvariable=ports_mode_value)
-                    # ports_pruning_entry = ttk.Combobox(ports_frame, values=["enable", "disable"], textvariable=ports_pruning_value)
+                    current_vlans = re.findall(r"^[\d]+", conn.get_info_from_router("sh vlan br"), re.MULTILINE)
+                    trunk_ports_allowed_vlan_entry = ttk.Combobox(trunk_ports_frame, values = current_vlans, textvariable = trunk_ports_allowed_vlan_value)
+                    trunk_ports_allowed_vlan_add_entry = ttk.Combobox(trunk_ports_frame, values = current_vlans, textvariable = trunk_ports_allowed_vlan_add_value)
 
-                    trunk_ports_mode_entry.grid(row=2, column=1, padx=10, pady=10)
-                    # ports_mode_entry.grid(row=2, column=2, padx=20, pady=10)
-                    # ports_pruning_entry.grid(row=2, column=3, padx=20, pady=10)
+                    trunk_ports_allowed_vlan_entry.grid(row=2, column=1, padx=10, pady=10)
+                    trunk_ports_allowed_vlan_add_entry.grid(row=2, column=2, padx=10, pady=10)
+
+                    # access run button
+                    trunk_config_run_button = tk.Button(trunk_ports_frame, text="Execute", width=12,
+                                                         command=lambda: trunk_config(ports_interface_value.get(),
+                                                                                       ports_mode_value.get(),
+                                                                                       trunk_ports_allowed_vlan_value.get(),
+                                                                                       trunk_ports_allowed_vlan_add_entry.get(), current_vlans))
+
+                    trunk_config_run_button.grid(row=3, column=3, padx=20, pady=10, sticky=tk.E)
+
+                elif ports_mode_value.get() == "dynamic":
+                    # ===========> dynamic port section
+                    dynamic_ports_frame = tk.LabelFrame(ports_main_frame, text="SWITCHPORT MODE DYNAMIC")
+                    dynamic_ports_frame.pack(fill=tk.X, padx=20, pady=15)
+                    # label section
+                    dynamic_ports_np_label = tk.Label(dynamic_ports_frame, text="negotiation parameter")
+
+                    dynamic_ports_np_label.grid(row=1, column=1)
+
+                    # Entries Section
+                    dynamic_ports_np_value = tk.StringVar()
+
+                    access_ports_type_entry = ttk.Combobox(dynamic_ports_frame, values = ["desirable", "auto"], textvariable = dynamic_ports_np_value)
+
+                    access_ports_type_entry.grid(row=2, column=1, padx=10, pady=10)
+
+                    #dynamic run button
+                    dynamic_config_run_button = tk.Button(dynamic_ports_frame, text="Execute", width=12, command=lambda: dynamic_config(ports_interface_value.get(), ports_mode_value.get(), dynamic_ports_np_value.get()))
+
+                    dynamic_config_run_button.grid(row=3, column=3, padx=20, pady=10, sticky=tk.E)
             else:
                 mgbx.showinfo("Error", "Please select given mode")
         else:
             mgbx.showinfo("Error", "Please select the interface first")
-
-
-
-
-    # Buttons Section
-    # ports_config_run_button = tk.Button(ports_frame, text="Execute", width=12, command=lambda: ports_config(ports_name_value.get(), ports_mode_value.get(), ports_pruning_value.get()))
-    #
-    # ports_config_run_button.grid(row=5, column=3, padx=20, pady=10, sticky=tk.E)

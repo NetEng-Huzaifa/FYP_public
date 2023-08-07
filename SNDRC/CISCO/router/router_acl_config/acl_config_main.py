@@ -93,63 +93,63 @@ def acl():
 
 
 
-    # =============================ACL Extended Config Section================================
-    # ===========> Extended ACL define section
-    acl_extended_frame = tk.LabelFrame(acl_extended_main_frame, text="Define Access Control List")
-    acl_extended_frame.pack(fill=tk.X, padx=20, pady=15)
-    # label section
-    aclExtended_number_label = tk.Label(acl_extended_frame, text="ACL number(100-199)")
-    aclExtended_action_label = tk.Label(acl_extended_frame, text="ACL action")
-    aclExtended_protocol_label = tk.Label(acl_extended_frame, text="Protocol")
-    aclExtended_srcAdd_label = tk.Label(acl_extended_frame, text="Src IP/network")
-    aclExtended_srcWCM_label = tk.Label(acl_extended_frame, text="Src WildCard Mask")
-    aclExtended_dstAdd_label = tk.Label(acl_extended_frame, text="Dst IP/network")
-    aclExtended_dstWCM_label = tk.Label(acl_extended_frame, text="Dst WildCard Mask")
-
-    aclExtended_number_label.grid(row=1, column=1)
-    aclExtended_action_label.grid(row=1, column=2)
-    aclExtended_protocol_label.grid(row=1, column=3)
-    aclExtended_srcAdd_label.grid(row=1, column=4)
-    aclExtended_srcWCM_label.grid(row=1, column=5)
-    aclExtended_dstAdd_label.grid(row=3, column=1)
-    aclExtended_dstWCM_label.grid(row=3, column=2)
-
-    # Entries Section
-    aclExtended_number_value = tk.StringVar()
-    aclExtended_action_value = tk.StringVar()
-    aclExtended_protocol_value = tk.StringVar()
-    aclExtended_srcAdd_value = tk.StringVar()
-    aclExtended_srcWCM_value = tk.StringVar()
-    aclExtended_dstAdd_value = tk.StringVar()
-    aclExtended_dstWCM_value = tk.StringVar()
-
-    aclExtended_number_entry = tk.Entry(acl_extended_frame, textvariable = aclExtended_number_value)
-    aclExtended_action_entry = ttk.Combobox(acl_extended_frame, values = ["deny", "permit"], textvariable = aclExtended_action_value)
-    aclExtended_protocol_entry = ttk.Combobox(acl_extended_frame, values = ['eigrp', 'icmp', 'igmp', 'ip', 'ospf', 'tcp', 'udp'], textvariable = aclExtended_protocol_value)
-    aclExtended_srcAdd_entry = tk.Entry(acl_extended_frame, textvariable = aclExtended_srcAdd_value)
-    aclExtended_srcWCM_entry = tk.Entry(acl_extended_frame, textvariable = aclExtended_srcWCM_value)
-    aclExtended_dstAdd_entry = tk.Entry(acl_extended_frame, textvariable=aclExtended_dstAdd_value)
-    aclExtended_dstWCM_entry = tk.Entry(acl_extended_frame, textvariable=aclExtended_dstWCM_value)
-
-    aclExtended_number_entry.grid(row=2, column=1, padx=20, pady=10)
-    aclExtended_action_entry.grid(row=2, column=2, padx=20, pady=10)
-    aclExtended_protocol_entry.grid(row=2, column=3, padx=20, pady=10)
-    aclExtended_srcAdd_entry.grid(row=2, column=4, padx=10, pady=10)
-    aclExtended_srcWCM_entry.grid(row=2, column=5, padx=10, pady=10)
-    aclExtended_dstAdd_entry.grid(row=4, column=1, padx=10, pady=10)
-    aclExtended_dstWCM_entry.grid(row=4, column=2, padx=10, pady=10)
-
-    # Buttons Section
-    acl_extended_permit_other_button = tk.Button(acl_extended_frame, text="Permit Remaining", width=12,
-                                               command=lambda: acl_standard_permit_other_config(aclExtended_number_entry.get()))
-    acl_extended_deny_other_button = tk.Button(acl_extended_frame, text="Deny Remaining", width=12,
-                                               command=lambda: acl_standard_deny_other_config(aclExtended_number_entry.get()))
-    acl_extended_define_run_button = tk.Button(acl_extended_frame, text="Execute", width=12,
-                                               command=lambda: acl_standard_define_config(aclExtended_number_entry.get(), aclStandard_action_value.get(), aclStandard_host_value.get(), aclStandard_WCM_value.get()))
-
-    acl_extended_permit_other_button.grid(row=5, column=1, padx=20, pady=10)
-    acl_extended_deny_other_button.grid(row=5, column=2, padx=20, pady=10, sticky=tk.E)
-    acl_extended_define_run_button.grid(row=5, column=4, padx=20, pady=10, sticky=tk.E)
+    # # =============================ACL Extended Config Section================================
+    # # ===========> Extended ACL define section
+    # acl_extended_frame = tk.LabelFrame(acl_extended_main_frame, text="Define Access Control List")
+    # acl_extended_frame.pack(fill=tk.X, padx=20, pady=15)
+    # # label section
+    # aclExtended_number_label = tk.Label(acl_extended_frame, text="ACL number(100-199)")
+    # aclExtended_action_label = tk.Label(acl_extended_frame, text="ACL action")
+    # aclExtended_protocol_label = tk.Label(acl_extended_frame, text="Protocol")
+    # aclExtended_srcAdd_label = tk.Label(acl_extended_frame, text="Src IP/network")
+    # aclExtended_srcWCM_label = tk.Label(acl_extended_frame, text="Src WildCard Mask")
+    # aclExtended_dstAdd_label = tk.Label(acl_extended_frame, text="Dst IP/network")
+    # aclExtended_dstWCM_label = tk.Label(acl_extended_frame, text="Dst WildCard Mask")
+    #
+    # aclExtended_number_label.grid(row=1, column=1)
+    # aclExtended_action_label.grid(row=1, column=2)
+    # aclExtended_protocol_label.grid(row=1, column=3)
+    # aclExtended_srcAdd_label.grid(row=1, column=4)
+    # aclExtended_srcWCM_label.grid(row=1, column=5)
+    # aclExtended_dstAdd_label.grid(row=3, column=1)
+    # aclExtended_dstWCM_label.grid(row=3, column=2)
+    #
+    # # Entries Section
+    # aclExtended_number_value = tk.StringVar()
+    # aclExtended_action_value = tk.StringVar()
+    # aclExtended_protocol_value = tk.StringVar()
+    # aclExtended_srcAdd_value = tk.StringVar()
+    # aclExtended_srcWCM_value = tk.StringVar()
+    # aclExtended_dstAdd_value = tk.StringVar()
+    # aclExtended_dstWCM_value = tk.StringVar()
+    #
+    # aclExtended_number_entry = tk.Entry(acl_extended_frame, textvariable = aclExtended_number_value)
+    # aclExtended_action_entry = ttk.Combobox(acl_extended_frame, values = ["deny", "permit"], textvariable = aclExtended_action_value)
+    # aclExtended_protocol_entry = ttk.Combobox(acl_extended_frame, values = ['eigrp', 'icmp', 'igmp', 'ip', 'ospf', 'tcp', 'udp'], textvariable = aclExtended_protocol_value)
+    # aclExtended_srcAdd_entry = tk.Entry(acl_extended_frame, textvariable = aclExtended_srcAdd_value)
+    # aclExtended_srcWCM_entry = tk.Entry(acl_extended_frame, textvariable = aclExtended_srcWCM_value)
+    # aclExtended_dstAdd_entry = tk.Entry(acl_extended_frame, textvariable=aclExtended_dstAdd_value)
+    # aclExtended_dstWCM_entry = tk.Entry(acl_extended_frame, textvariable=aclExtended_dstWCM_value)
+    #
+    # aclExtended_number_entry.grid(row=2, column=1, padx=20, pady=10)
+    # aclExtended_action_entry.grid(row=2, column=2, padx=20, pady=10)
+    # aclExtended_protocol_entry.grid(row=2, column=3, padx=20, pady=10)
+    # aclExtended_srcAdd_entry.grid(row=2, column=4, padx=10, pady=10)
+    # aclExtended_srcWCM_entry.grid(row=2, column=5, padx=10, pady=10)
+    # aclExtended_dstAdd_entry.grid(row=4, column=1, padx=10, pady=10)
+    # aclExtended_dstWCM_entry.grid(row=4, column=2, padx=10, pady=10)
+    #
+    # # Buttons Section
+    # acl_extended_permit_other_button = tk.Button(acl_extended_frame, text="Permit Remaining", width=12,
+    #                                            command=lambda: acl_standard_permit_other_config(aclExtended_number_entry.get()))
+    # acl_extended_deny_other_button = tk.Button(acl_extended_frame, text="Deny Remaining", width=12,
+    #                                            command=lambda: acl_standard_deny_other_config(aclExtended_number_entry.get()))
+    # acl_extended_define_run_button = tk.Button(acl_extended_frame, text="Execute", width=12,
+    #                                            command=lambda: acl_standard_define_config(aclExtended_number_entry.get(), aclStandard_action_value.get(), aclStandard_host_value.get(), aclStandard_WCM_value.get()))
+    #
+    # acl_extended_permit_other_button.grid(row=5, column=1, padx=20, pady=10)
+    # acl_extended_deny_other_button.grid(row=5, column=2, padx=20, pady=10, sticky=tk.E)
+    # acl_extended_define_run_button.grid(row=5, column=4, padx=20, pady=10, sticky=tk.E)
 
 
     # ===========> ACL extended apply section

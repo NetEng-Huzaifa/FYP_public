@@ -9,6 +9,7 @@ from CISCO.router.router_acl_config.acl_config_main import *
 from CISCO.router.switch_vlan_config.vlan_config_main import *
 from CISCO.router.switch_vtp_config.vtp_config_main import *
 from CISCO.router.switch_ports_config.ports_config_main import *
+from CISCO.router.router_nat_config.nat_config_main import *
 
 
 def hide_indicate():
@@ -23,6 +24,7 @@ def hide_indicate():
     vlan_config_button.config(bg="#d5d5d5", fg="black")
     vtp_config_button.config(bg="#d5d5d5", fg="black")
     ports_config_button.config(bg="#d5d5d5", fg="black")
+    nat_config_button.config(bg="#d5d5d5", fg="black")
 
 
 def delete_pages():
@@ -57,6 +59,8 @@ vtp_config_button = tk.Button(left_button_frame, text="VTP", font=("Arial", 12),
 vtp_config_button.grid()
 ports_config_button = tk.Button(left_button_frame, text="Ports", font=("Arial", 12), bg="#d5d5d5", width=13, command=lambda: indicate(ports_config_button, ports))
 ports_config_button.grid()
+nat_config_button = tk.Button(left_button_frame, text="NAT", font=("Arial", 12), bg="#d5d5d5", width=13, command=lambda: indicate(nat_config_button, nat))
+nat_config_button.grid()
 
 
 
