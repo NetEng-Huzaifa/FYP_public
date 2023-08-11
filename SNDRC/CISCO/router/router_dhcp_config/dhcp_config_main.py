@@ -16,7 +16,6 @@ def dhcp():
     # add frames to notebook
     notebook.add(dhcpServer_main_frame, text='DHCP Server')
     notebook.add(dhcpClient_main_frame, text='DHCP client')
-    # notebook.add(deviceManagement_frame, text='DeviceManagement')
 
     # =============================DHCP Config Section================================
     # ===========> DHCP SERVER service section
