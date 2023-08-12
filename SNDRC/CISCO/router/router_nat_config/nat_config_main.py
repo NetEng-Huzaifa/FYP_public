@@ -35,8 +35,8 @@ def nat():
 
     snat_int_inside_label.grid(row=1, column=1, padx=20, pady=10)
     snat_int_outside_label.grid(row=2, column=1, padx=20, pady=10)
-    snat_public_ip_label.grid(row=4, column=2)
-    snat_private_ip_label.grid(row=4, column=3)
+    snat_public_ip_label.grid(row=4, column=3)
+    snat_private_ip_label.grid(row=4, column=2)
 
 
     # Entries Section
@@ -52,11 +52,11 @@ def nat():
 
     snat_int_inside_entry.grid(row=1, column=2)
     snat_int_outside_entry.grid(row=2, column=2)
-    snat_public_ip_entry.grid(row=5, column=2, padx=20, pady=10)
-    snat_private_ip_entry.grid(row=5, column=3, padx=20, pady=10)
+    snat_public_ip_entry.grid(row=5, column=3, padx=20, pady=10)
+    snat_private_ip_entry.grid(row=5, column=2, padx=20, pady=10)
 
     #Button
-    snat_run_button = tk.Button(snat_frame, text="Execute", width=12, command=lambda: snat_config(dhcpClient_interface_value.get()))
+    snat_run_button = tk.Button(snat_frame, text="Execute", width=12, command=lambda: snat_config(snat_int_inside_value.get(), snat_int_outside_value.get(), snat_public_ip_value.get(), snat_private_ip_value.get(), interface_info))
     snat_run_button.pack(padx=20, pady=10)
 
 
@@ -80,9 +80,9 @@ def nat():
     dnat_set_pool_name_label = tk.Label(dnat_pub_ip_frame, text="Pool name")
     dnat_pool_from_label = tk.Label(dnat_pub_ip_frame, text="From")
     dnat_pool_to_label = tk.Label(dnat_pub_ip_frame, text="TO")
-    dnat_pool_prefixLength_label = tk.Label(dnat_pub_ip_frame, text="Prefix Length")
+    dnat_pool_prefixLength_label = tk.Label(dnat_pub_ip_frame, text="Prefix Length i.e 24")
     dnat_source_list_label = tk.Label(dnat_Apply_frame, text="Access-list number")
-    dnat_pool_name_label = tk.Label(dnat_Apply_frame, text="Pool name")
+    # dnat_pool_name_label = tk.Label(dnat_Apply_frame, text="Pool name")
 
     dnat_int_inside_label.grid(row=1, column=1)
     dnat_int_outside_label.grid(row=1, column=2)
@@ -90,8 +90,8 @@ def nat():
     dnat_pool_from_label.grid(row=4, column=2)
     dnat_pool_to_label.grid(row=4, column=3)
     dnat_pool_prefixLength_label.grid(row=4, column=4)
-    dnat_source_list_label.grid(row=6, column=1)
-    dnat_pool_name_label.grid(row=6, column=2)
+    dnat_source_list_label.grid(row=6, column=1, padx=20, pady=10)
+    # dnat_pool_name_label.grid(row=6, column=2)
 
 
     # Entries Section
@@ -102,7 +102,7 @@ def nat():
     dnat_pool_to_value = tk.StringVar()
     dnat_pool_prefixLength_value = tk.StringVar()
     dnat_source_list_value = tk.StringVar()
-    dnat_pool_name_value = tk.StringVar()
+    # dnat_pool_name_value = tk.StringVar()
 
     dnat_int_inside_entry = ttk.Combobox(dnat_interface_frame, values=interface_info, textvariable=dnat_int_inside_value)
     dnat_int_outside_entry = ttk.Combobox(dnat_interface_frame, values=interface_info, textvariable=dnat_int_outside_value)
@@ -111,7 +111,7 @@ def nat():
     dnat_pool_to_entry = tk.Entry(dnat_pub_ip_frame, textvariable=dnat_pool_to_value)
     dnat_pool_prefixLength_entry = tk.Entry(dnat_pub_ip_frame, textvariable=dnat_pool_prefixLength_value)
     dnat_source_list_entry = tk.Entry(dnat_Apply_frame, textvariable=dnat_source_list_value)
-    dnat_pool_name_entry = tk.Entry(dnat_Apply_frame, textvariable=dnat_pool_name_value)
+    # dnat_pool_name_entry = tk.Entry(dnat_Apply_frame, textvariable=dnat_pool_name_value)
 
     dnat_int_inside_entry.grid(row=2, column=1, padx=20, pady=10)
     dnat_int_outside_entry.grid(row=2, column=2, padx=20, pady=10)
@@ -119,11 +119,11 @@ def nat():
     dnat_pool_from_entry.grid(row=5, column=2, padx=20, pady=10)
     dnat_pool_to_entry.grid(row=5, column=3, padx=20, pady=10)
     dnat_pool_prefixLength_entry.grid(row=5, column=4, padx=20, pady=10)
-    dnat_source_list_entry.grid(row=7, column=1, padx=20, pady=10)
-    dnat_pool_name_entry.grid(row=7, column=2, padx=20, pady=10)
+    dnat_source_list_entry.grid(row=6, column=2, padx=20, pady=10)
+    # dnat_pool_name_entry.grid(row=7, column=2, padx=20, pady=10)
 
     #Button
-    dnat_run_button = tk.Button(dnat_frame, text="Execute", width=12, command=lambda: dnat_config(dhcpClient_interface_value.get()))
+    dnat_run_button = tk.Button(dnat_frame, text="Execute", width=12, command=lambda: dnat_config(dnat_int_inside_value.get(), dnat_int_outside_value.get(), dnat_set_pool_name_value.get(), dnat_pool_from_value.get(), dnat_pool_to_value.get(), dnat_pool_prefixLength_value.get(), dnat_source_list_value.get(), interface_info))
     dnat_run_button.pack(padx=20, pady=10)
 
 
@@ -149,7 +149,7 @@ def nat():
     pat_pool_to_label = tk.Label(pat_pub_ip_frame, text="TO")
     pat_pool_prefixLength_label = tk.Label(pat_pub_ip_frame, text="Prefix Length")
     pat_source_list_label = tk.Label(pat_Apply_frame, text="Access-list number")
-    pat_pool_name_label = tk.Label(pat_Apply_frame, text="Pool name")
+    # pat_pool_name_label = tk.Label(pat_Apply_frame, text="Pool name")
 
     pat_int_inside_label.grid(row=1, column=1)
     pat_int_outside_label.grid(row=1, column=2)
@@ -157,8 +157,8 @@ def nat():
     pat_pool_from_label.grid(row=4, column=2)
     pat_pool_to_label.grid(row=4, column=3)
     pat_pool_prefixLength_label.grid(row=4, column=4)
-    pat_source_list_label.grid(row=6, column=1)
-    pat_pool_name_label.grid(row=6, column=2)
+    pat_source_list_label.grid(row=6, column=1, padx=20, pady=10)
+    # pat_pool_name_label.grid(row=6, column=2)
 
 
     # Entries Section
@@ -169,7 +169,7 @@ def nat():
     pat_pool_to_value = tk.StringVar()
     pat_pool_prefixLength_value = tk.StringVar()
     pat_source_list_value = tk.StringVar()
-    pat_pool_name_value = tk.StringVar()
+    # pat_pool_name_value = tk.StringVar()
 
     pat_int_inside_entry = ttk.Combobox(pat_interface_frame, values=interface_info, textvariable=pat_int_inside_value)
     pat_int_outside_entry = ttk.Combobox(pat_interface_frame, values=interface_info, textvariable=pat_int_outside_value)
@@ -178,7 +178,7 @@ def nat():
     pat_pool_to_entry = tk.Entry(pat_pub_ip_frame, textvariable=pat_pool_to_value)
     pat_pool_prefixLength_entry = tk.Entry(pat_pub_ip_frame, textvariable=pat_pool_prefixLength_value)
     pat_source_list_entry = tk.Entry(pat_Apply_frame, textvariable=pat_source_list_value)
-    pat_pool_name_entry = tk.Entry(pat_Apply_frame, textvariable=pat_pool_name_value)
+    # pat_pool_name_entry = tk.Entry(pat_Apply_frame, textvariable=pat_pool_name_value)
 
     pat_int_inside_entry.grid(row=2, column=1, padx=20, pady=10)
     pat_int_outside_entry.grid(row=2, column=2, padx=20, pady=10)
@@ -186,9 +186,9 @@ def nat():
     pat_pool_from_entry.grid(row=5, column=2, padx=20, pady=10)
     pat_pool_to_entry.grid(row=5, column=3, padx=20, pady=10)
     pat_pool_prefixLength_entry.grid(row=5, column=4, padx=20, pady=10)
-    pat_source_list_entry.grid(row=7, column=1, padx=20, pady=10)
-    pat_pool_name_entry.grid(row=7, column=2, padx=20, pady=10)
+    pat_source_list_entry.grid(row=6, column=2, padx=20, pady=10)
+    # pat_pool_name_entry.grid(row=7, column=2, padx=20, pady=10)
 
     #Button
-    pat_run_button = tk.Button(pat_frame, text="Execute", width=12, command=lambda: pat_config(dhcpClient_interface_value.get()))
+    pat_run_button = tk.Button(pat_frame, text="Execute", width=12, command=lambda: pat_config(pat_int_inside_value.get(),  pat_int_outside_value.get(),  pat_set_pool_name_value.get(),  pat_pool_from_value.get(),  pat_pool_to_value.get(),  pat_pool_prefixLength_value.get(),  pat_source_list_value.get(),  interface_info))
     pat_run_button.pack(padx=20, pady=10)
