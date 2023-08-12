@@ -4,20 +4,20 @@ def ip_checking(user_ip):
     result = []
     user_ip = user_ip.split(".")
     if len(user_ip) == 4:  # check no. of octats of IP
-        if int(user_ip[3]) == 0:  # check last octat of IP
-            # for Network address
-            mgbx.showinfo("Caution", "It is a Network address")
-        else:
-            for octat in user_ip:  # loop each octat of IP
-                if octat.isnumeric():  # check octat not contain any invalid syntax
-                    if int(octat) >= 0 and int(octat) <= 255:  # check each octat validity
-                        result.append("True")
-                    else:
-                        mgbx.showinfo("Selection", f"Error! {octat} is not a valid octat")
-                        break  # break the loop in case of issue
+        # if int(user_ip[3]) == 0:  # check last octat of IP
+        #     # for Network address
+        #     mgbx.showinfo("Caution", "It is a Network address")
+        # else:
+        for octat in user_ip:  # loop each octat of IP
+            if octat.isnumeric():  # check octat not contain any invalid syntax
+                if int(octat) >= 0 and int(octat) <= 255:  # check each octat validity
+                    result.append("True")
                 else:
-                    mgbx.showinfo("Selection", "Entered IPv4 Address is not valid")
-                    break
+                    mgbx.showinfo("Selection", f"Error! {octat} is not a valid octat")
+                    break  # break the loop in case of issue
+            else:
+                mgbx.showinfo("Selection", "Entered IPv4 Address is not valid")
+                break
     else:
         mgbx.showinfo("Wrong Input", f"""Please Check your entered IPv4 Address\nno. of Valid Octat of IPv4 is 4 but you entered {len(user_ip)}""")
 

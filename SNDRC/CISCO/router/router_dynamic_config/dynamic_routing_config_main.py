@@ -61,7 +61,7 @@ def dynamic_routing():
     rip_add_net_button = tk.Button(rip_ANM_frame, text="Add", width=12, command=lambda: rip_add_net_config(rip_add_net_label_value.get(), rip_add_net_value.get()))
     rip_add_net_button.grid(row=1, column=3, padx=20, pady=10, sticky=tk.E)
 
-    rip_run_button = tk.Button(rip_frame, text="Execute", width=12, command=lambda: rip_run_config(rip_ver_2_value.get(), rip_dir_con_int_value.get(), rip_dir_con_lopbak_int_value.get(), rip_add_net_label_value.get()))
+    rip_run_button = tk.Button(rip_frame, text="Execute", width=12, command=lambda: rip_run_config(rip_ver_2_value.get(), rip_dir_con_int_value.get(), rip_dir_con_lopbak_int_value.get(), rip_add_net_label_value.get(), rip_add_net_value.get()))
     rip_run_button.grid(row=5, column=1, padx=40, pady=10, sticky=tk.E)
 
 
@@ -72,7 +72,7 @@ def dynamic_routing():
     eigrp_frame.pack(fill=tk.X, padx=20, pady=15)
 
     # label section
-    eigrp_asn_label = tk.Label(eigrp_frame, text="Autonomous System Number")
+    eigrp_asn_label = tk.Label(eigrp_frame, text="Autonomous System Number (1-65535)")
     eigrp_asn_label.grid(row=0, column=1, sticky=tk.W, padx=20, pady=5)
 
 
@@ -113,10 +113,10 @@ def dynamic_routing():
     eigrp_wcm_entry.grid(row=2, column=2, padx=20, pady=10)
 
     #button section
-    eigrp_add_net_button = tk.Button(eigrp_ANM_frame, text="Add", width=12, command=lambda: eigrp_add_net_config())
+    eigrp_add_net_button = tk.Button(eigrp_ANM_frame, text="Add", width=12, command=lambda: eigrp_add_net_config(eigrp_add_net_label_value.get(), eigrp_add_net_value.get(), eigrp_wcm_value.get()))
     eigrp_add_net_button.grid(row=2, column=3, padx=20, pady=10, sticky=tk.E)
 
-    eigrp_run_button = tk.Button(eigrp_frame, text="Execute", width=12, command=lambda: eigrp_run_config())
+    eigrp_run_button = tk.Button(eigrp_frame, text="Execute", width=12, command=lambda: eigrp_run_config(eigrp_asn_value.get(), eigrp_dir_con_int_value.get(), eigrp_dir_con_lopbak_int_value.get(), eigrp_add_net_label_value.get()))
     eigrp_run_button.grid(row=5, column=1, padx=40, pady=10, sticky=tk.E)
 
 
@@ -127,27 +127,27 @@ def dynamic_routing():
     ospf_frame.pack(fill=tk.X, padx=20, pady=15)
 
     #Label
-    ospf_asn_label = tk.Label(ospf_frame, text="Process ID")
-    ospf_area_label = tk.Label(ospf_frame, text="Area")
+    ospf_pid_label = tk.Label(ospf_frame, text="Process ID (1-65535)")
+    ospf_area_label = tk.Label(ospf_frame, text="Area (0-4294967295)")
 
-    ospf_asn_label.grid(row=1, column=1, sticky=tk.W, padx=20, pady=5)
+    ospf_pid_label.grid(row=1, column=1, sticky=tk.W, padx=20, pady=5)
     ospf_area_label.grid(row=3, column=1, sticky=tk.W, padx=20, pady=5)
 
 
     # Entries Section
-    ospf_asn_value = tk.StringVar()
+    ospf_pid_value = tk.StringVar()
     ospf_area_value = tk.StringVar()
     ospf_dir_con_int_value = tk.StringVar()
     ospf_dir_con_int_value.set("0")
     ospf_dir_con_lopbak_int_value = tk.StringVar()
     ospf_dir_con_lopbak_int_value.set("0")
 
-    ospf_asn_entry = tk.Entry(ospf_frame, textvariable=ospf_asn_value, width=37)
+    ospf_pid_entry = tk.Entry(ospf_frame, textvariable=ospf_pid_value, width=37)
     ospf_area_entry = tk.Entry(ospf_frame, textvariable=ospf_area_value, width=37)
     ospf_dir_con_int_entry = tk.Checkbutton(ospf_frame, text='Advertise Directly connected Interfaces', variable=ospf_dir_con_int_value, onvalue=1, offvalue=0)
     ospf_dir_con_lopbak_int_entry = tk.Checkbutton(ospf_frame, text='Advertise Directly connected and loopback Interfaces(Preferred)', variable=ospf_dir_con_lopbak_int_value, onvalue=1, offvalue=0)
 
-    ospf_asn_entry.grid(row=2, column=1, sticky=tk.W, padx=20)
+    ospf_pid_entry.grid(row=2, column=1, sticky=tk.W, padx=20)
     ospf_area_entry.grid(row=4, column=1, sticky=tk.W, padx=20)
     ospf_dir_con_int_entry.grid(row=5, column=1, sticky=tk.W, padx=20, pady=5)
     ospf_dir_con_lopbak_int_entry.grid(row=6, column=1, sticky=tk.W, padx=20, pady=5)
@@ -177,9 +177,9 @@ def dynamic_routing():
 
 
     #button section
-    ospf_add_net_button = tk.Button(ospf_ANM_frame, text="Add", width=12, command=lambda: ospf_add_net_config())
+    ospf_add_net_button = tk.Button(ospf_ANM_frame, text="Add", width=12, command=lambda: ospf_add_net_config(ospf_area_value.get(), ospf_add_net_label_value.get(), ospf_add_net_value.get(), ospf_wcm_value.get()))
     ospf_add_net_button.grid(row=2, column=3, padx=20, pady=10, sticky=tk.E)
 
-    ospf_run_button = tk.Button(ospf_frame, text="Execute", width=12, command=lambda: ospf_run_config())
+    ospf_run_button = tk.Button(ospf_frame, text="Execute", width=12, command=lambda: ospf_run_config(ospf_pid_value.get(), ospf_area_value.get(), ospf_dir_con_int_value.get(), ospf_dir_con_lopbak_int_value.get(), ospf_add_net_label_value.get()))
     ospf_run_button.grid(row=8, column=1, padx=40, pady=10, sticky=tk.E)
 
