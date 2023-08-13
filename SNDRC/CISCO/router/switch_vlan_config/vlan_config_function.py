@@ -30,7 +30,7 @@ def vlan_config(vlan_number_value, vlan_state_value, vlan_name_value):
         else:
             mgbx.showinfo("Error", "Please select numeric value within a given range")
 
-        print(vlan_commands_list)
+        # print(vlan_commands_list)
         conn.add_commands(vlan_commands_list)
     else:
         mgbx.showinfo("Error", "Please select value within a given range")

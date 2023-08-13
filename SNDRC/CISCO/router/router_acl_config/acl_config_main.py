@@ -19,7 +19,7 @@ def acl():
 
     # =============================ACL Standard Config Section================================
     # ===========>Standard ACL define section
-    acl_standard_frame = tk.LabelFrame(acl_standard_main_frame, text="Define Access Control List")
+    acl_standard_frame = tk.LabelFrame(acl_standard_main_frame, text="1- Define Access Control List")
     acl_standard_frame.pack(fill=tk.X, padx=20, pady=15)
     # label section
     aclStandard_number_label = tk.Label(acl_standard_frame, text="ACL number(1-99)")
@@ -49,9 +49,9 @@ def acl():
     aclStandard_WCM_entry.grid(row=2, column=4, padx=10, pady=10)
 
     # Buttons Section
-    acl_standard_permit_other_button = tk.Button(acl_standard_frame, text="Permit Remaining", width=12,
+    acl_standard_permit_other_button = tk.Button(acl_standard_frame, text="Permit Remaining", width=14,
                                                command=lambda: acl_standard_permit_other_config(aclStandard_number_entry.get()))
-    acl_standard_deny_other_button = tk.Button(acl_standard_frame, text="Deny Remaining", width=12,
+    acl_standard_deny_other_button = tk.Button(acl_standard_frame, text="Deny Remaining", width=14,
                                                command=lambda: acl_standard_deny_other_config(aclStandard_number_entry.get()))
     acl_standard_define_run_button = tk.Button(acl_standard_frame, text="Execute", width=12,
                                                command=lambda: acl_standard_define_config(aclStandard_number_entry.get(), aclStandard_action_value.get(), aclStandard_host_value.get(), aclStandard_WCM_value.get()))
@@ -62,7 +62,7 @@ def acl():
 
 
     # ===========> ACL apply section
-    acl_standard_apply_frame = tk.LabelFrame(acl_standard_main_frame, text="Apply Access Control List")
+    acl_standard_apply_frame = tk.LabelFrame(acl_standard_main_frame, text="2- Apply Access Control List")
     acl_standard_apply_frame.pack(fill=tk.X, padx=20, pady=15)
     # label section
     aclStandard_apply_interface_label = tk.Label(acl_standard_apply_frame, text="Interface")

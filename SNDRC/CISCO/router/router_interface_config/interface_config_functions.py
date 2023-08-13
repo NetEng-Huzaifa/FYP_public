@@ -42,7 +42,7 @@ def interface_config(interface_value, interface_state_value, interface_duplex_va
             else:
                 mgbx.showinfo("Error", "Please select numeric value")
 
-        print(interface_command_list)
+        # print(interface_command_list)
         conn.add_commands(interface_command_list)
     else:
         mgbx.showinfo("Error", "Please select the interface first")
@@ -72,12 +72,15 @@ def serial_interface_config(interface_serial_value, interface_serial_encapsulati
             else:
                 mgbx.showinfo("Error", "Please select numeric value")
 
-        print(interface_serial_command_list)
+        # print(interface_serial_command_list)
         conn.add_commands(interface_serial_command_list)
     else:
         mgbx.showinfo("Error", "Please select the interface first")
 def default_interface_config(defaultInterface_value):
-    conn.add_commands(f"default interface {defaultInterface_value}")
+    if defaultInterface_value:
+        conn.add_commands(f"default interface {defaultInterface_value}")
+    else:
+        mgbx.showinfo("Error", "Please select the interface")
 
 def sw_interface_config(swInterface_value, sw_select_value):
     sw_int_list = []
@@ -89,7 +92,7 @@ def sw_interface_config(swInterface_value, sw_select_value):
             sw_int_list.append("no switchport")
         else:
             mgbx.showinfo("Error", "Please select correct given option")
-        print(sw_int_list)
+        # print(sw_int_list)
         conn.add_commands(sw_int_list)
     else:
         mgbx.showinfo("Error", "Both fields are required")
@@ -109,10 +112,15 @@ def loopbackinterface_config(loopbackInterface_number_value):
         mgbx.showinfo("Error", "Please select the interface first")
 
 def subinterface_config(subInterface_value, subInterface_number_value, subInterface_vlan_value):
-    conn.add_commands([f"interface {subInterface_value}.{subInterface_number_value}",f"encapsulation dot {subInterface_vlan_value}"])
-
+    if subInterface_value and subInterface_number_value and subInterface_vlan_value:
+        conn.add_commands([f"interface {subInterface_value}.{subInterface_number_value}",f"encapsulation dot {subInterface_vlan_value}"])
+    else:
+        mgbx.showinfo("Error", "All fields are required")
 def sv_interface_config(sv_interface_number_value):
-    conn.add_commands(f"interface vlan {sv_interface_number_value}")
+    if sv_interface_number_value:
+        conn.add_commands(f"interface vlan {sv_interface_number_value}")
+    else:
+        mgbx.showinfo("Error", "Please, Select a VLAN")
 
 
 

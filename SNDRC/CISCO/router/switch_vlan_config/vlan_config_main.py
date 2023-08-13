@@ -21,10 +21,12 @@ def vlan():
     vlan_number_label = tk.Label(vlan_frame, text="VLAN number(1-4094)")
     vlan_state_label = tk.Label(vlan_frame, text="VLAN state")
     vlan_name_label = tk.Label(vlan_frame, text="name")
+    vlan_info_label = tk.Label(vlan_frame, text="VTP mode must be transparent if you use Extended VLANs (1006-4094)!")
 
     vlan_number_label.grid(row=1, column=1)
     vlan_state_label.grid(row=1, column=2)
     vlan_name_label.grid(row=1, column=3)
+    vlan_info_label.grid(row=3, column=1, columnspan=3, sticky=tk.W, padx=20, pady=5)
 
     # Entries Section
     vlan_number_value = tk.StringVar()
@@ -42,4 +44,4 @@ def vlan():
     # Buttons Section
     vlan_config_run_button = tk.Button(vlan_frame, text="Execute", width=12, command=lambda: vlan_config(vlan_number_value.get(), vlan_state_value.get(), vlan_name_value.get()))
 
-    vlan_config_run_button.grid(row=5, column=3, padx=20, pady=10, sticky=tk.E)
+    vlan_config_run_button.grid(row=3, column=4, padx=20, pady=10, sticky=tk.E)

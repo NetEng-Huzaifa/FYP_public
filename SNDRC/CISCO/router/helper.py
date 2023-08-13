@@ -39,3 +39,10 @@ def get_subnetmask(userValue):
                    "27": "255.255.255.224", "28": "255.255.255.240", "29": "255.255.255.248", "30": "255.255.255.252",
                    "31": "255.255.255.254", "32": "255.255.255.255"}
     return subnet_mask[userValue]
+
+
+def prefix_checking(user_prefix):
+    if 0 < int(user_prefix) <= 32:
+        return "Pass"
+    else:
+        mgbx.showinfo("Error", "Prefix length must be in the 1-32 range")

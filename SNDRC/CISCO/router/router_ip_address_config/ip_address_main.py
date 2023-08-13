@@ -1,6 +1,5 @@
 from tkinter import ttk
 from CISCO.router.router_main_frames import *
-# from CISCO.router.access_cisco_router.access_cisco_router_ssh import *
 import re
 from .ipAddress_config_functions import *
 
@@ -9,17 +8,11 @@ def ip_address():
     notebook.pack(expand=True, anchor=tk.N, fill=tk.X)
     # create frames
     ipAddress_main_frame = tk.Frame(notebook)
-    # ssh_main_frame = tk.Frame(notebook)
-    # deviceManagement_frame = tk.Frame(notebook)
 
     ipAddress_main_frame.pack(fill='both', expand=True)
-    # ssh_main_frame.pack(fill='both', expand=True)
-    # deviceManagement_frame.pack(fill='both', expand=True)
 
     # add frames to notebook
     notebook.add(ipAddress_main_frame, text='IP Addresses')
-    # notebook.add(ssh_main_frame, text='SSH')
-    # notebook.add(deviceManagement_frame, text='DeviceManagement')
 
     # =============================ipAddress Config Section================================
     # ===========> ipAddress section
@@ -43,8 +36,8 @@ def ip_address():
     ip_priority_value = tk.StringVar()
 
     ip_interface_entry = ttk.Combobox(ipAddress_frame, values = re.findall(r"^[A-Za-z].+?[\d/.]+", conn.get_info_from_router("sh ip int br"), re.MULTILINE), textvariable = ip_interface_value)
-    ipAddress_entry = tk.Entry(ipAddress_frame, textvariable=ipAddress_value)
-    ip_prefixLength_entry = tk.Entry(ipAddress_frame, textvariable=ip_prefixLength_value)
+    ipAddress_entry = tk.Entry(ipAddress_frame, textvariable=ipAddress_value, width=24)
+    ip_prefixLength_entry = tk.Entry(ipAddress_frame, textvariable=ip_prefixLength_value, width=24)
     ip_priority_entry = ttk.Combobox(ipAddress_frame, values=["primary", "Secondary"], textvariable=ip_priority_value)
 
     ip_interface_entry.grid(row=2, column=1, padx=20, pady=10)

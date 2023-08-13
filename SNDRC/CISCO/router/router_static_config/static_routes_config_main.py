@@ -18,7 +18,7 @@ def static_routing():
     static_frame.pack(fill=tk.X, padx=20, pady=15)
     # label section
     static_network_label = tk.Label(static_frame, text="Network/IP address")
-    static_prefixLength_label = tk.Label(static_frame, text="Prefix Length")
+    static_prefixLength_label = tk.Label(static_frame, text="PrefixLength i.e 24")
     static_gateway_label = tk.Label(static_frame, text="Gateway")
 
     static_network_label.grid(row=1, column=1)
@@ -48,17 +48,17 @@ def static_routing():
     static_default_frame = tk.LabelFrame(static_main_frame, text="DEFAULT STATIC ROUTE: ")
     static_default_frame.pack(fill=tk.X, padx=20, pady=15)
     # label section
-    static_default_gateway_label = tk.Label(static_default_frame, text="Gateway")
+    static_default_gateway_label = tk.Label(static_default_frame, text="Gateway Address: ")
 
-    static_default_gateway_label.grid(row=1, column=3)
+    static_default_gateway_label.grid(row=1, column=1, padx=20, pady=15)
 
     # Entries Section
     static_default_gateway_value = tk.StringVar()
 
     static_default_gateway_entry = tk.Entry(static_default_frame, textvariable=static_default_gateway_value)
 
-    static_default_gateway_entry.grid(row=2, column=3, padx=20, pady=10)
+    static_default_gateway_entry.grid(row=1, column=2, padx=20, pady=10)
 
     # Buttons Section
     static_default_run_button = tk.Button(static_default_frame, text="Execute", bg="#ecebec", width=12, command=lambda: staticDefault_config(static_default_gateway_value.get()))
-    static_default_run_button.grid(row=5, column=3, padx=20, pady=10, sticky=tk.E)
+    static_default_run_button.grid(row=2, column=2, padx=20, pady=10, sticky=tk.E)

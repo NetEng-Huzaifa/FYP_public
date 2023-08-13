@@ -77,12 +77,12 @@ def ports():
                     # label section
                     trunk_ports_allowed_vlan_label = tk.Label(trunk_ports_frame, text="Single VLAN")
                     trunk_ports_allowed_vlan_add_label = tk.Label(trunk_ports_frame, text="Multiple VLAN")
-                    info_label = tk.Label(trunk_ports_frame, text="Just click EXECUTE if you don't want to add allowed VLAN")
-                    MultipleVlan_info = tk.Label(trunk_ports_frame, text="comma seperated i.e 2,3,4")
+                    trunk_info_label = tk.Label(trunk_ports_frame, text="Just click EXECUTE if you don't want to add allowed VLAN")
+                    MultipleVlan_info = tk.Label(trunk_ports_frame, text="-> comma seperated i.e 2,3,4")
 
                     trunk_ports_allowed_vlan_label.grid(row=1, column=1)
                     trunk_ports_allowed_vlan_add_label.grid(row=1, column=2)
-                    info_label.grid(row=0, column=1)
+                    trunk_info_label.grid(row=3, column=1, columnspan=2, sticky=tk.W, padx=10, pady=5)
                     MultipleVlan_info.grid(row=2, column=3)
 
                     # Entries Section

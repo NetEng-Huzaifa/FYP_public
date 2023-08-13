@@ -215,12 +215,12 @@ L        192.168.56.135/32 is directly connected, Ethernet0/0
 # filtered_lines = [line for line in lines if "Loopback" not in line]
 #
 # data_without_spaces = data.replace(" ", "")
-lines = re.findall(r".*\d*.\d*.\d*.\d*/32 is directly connected.*", data, re.MULTILINE)
-data_without_spaces = '\n'.join([line for line in lines if "Loopback" not in line]).replace(" ", "")
-ip = re.findall(r"\d*\.\d*\.\d*\.\d*", data_without_spaces, re.MULTILINE)
-for line in ip:
-    network_ip_addresses = 'network ' + line + f' 0.0.0.0 area 0'
-print(network_ip_addresses)
+# lines = re.findall(r".*\d*.\d*.\d*.\d*/32 is directly connected.*", data, re.MULTILINE)
+# data_without_spaces = '\n'.join([line for line in lines if "Loopback" not in line]).replace(" ", "")
+# ip = re.findall(r"\d*\.\d*\.\d*\.\d*", data_without_spaces, re.MULTILINE)
+# for line in ip:
+#     network_ip_addresses = 'network ' + line + f' 0.0.0.0 area 0'
+# print(network_ip_addresses)
 
 
 # filtered_lines = [line for line in lines if not re.search(r'\bLoopback\b', line)]
@@ -239,6 +239,54 @@ print(network_ip_addresses)
 
 
 
+
+
+# =====================important
+# import tkinter as tk
+#
+# def on_double_click(event):
+#     selected_index = listbox.curselection()
+#     if selected_index:
+#         selected_index = selected_index[0]
+#         selected_item = listbox.get(selected_index)
+#         print("Double-clicked:", selected_item)
+#
+# data = "192.168.56.135,abc,123,123,Cisco,Router,Telnet"
+# info_list = data.split(',')
+#
+# root = tk.Tk()
+# root.title("Display and Select Information")
+#
+# listbox = tk.Listbox(root, font=("Times New Roman", 12))
+# listbox.pack(padx=10, pady=10, fill=tk.BOTH, expand=True)
+#
+# for info in info_list:
+#     listbox.insert(tk.END, info)
+#
+# listbox.bind("<Double-Button-1>", on_double_click)
+#
+# root.mainloop()
+
+# ===============================
+
+import tkinter as tk
+from tkinter import ttk
+from ttkthemes import ThemedTk
+
+
+def main():
+    root = ThemedTk(theme="Adapta")  # Choose a theme you like
+
+    root.title("Custom Title Bar Style")
+
+    label = ttk.Label(root, text="Hello, Tkinter!", font=("Helvetica", 16))
+    label.pack(padx=20, pady=20)
+
+    root.mainloop()
+
+
+if __name__ == "__main__":
+    main()
 
 
 

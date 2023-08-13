@@ -24,7 +24,7 @@ def dns():
 
     # Radio button section
     dnsServer_service_label = tk.Label(dnsServer_frame, text="DNS Services : ")
-    dnsServer_service_label.grid(row=1, column=1)
+    dnsServer_service_label.grid(row=1, column=1, padx=20, pady=10)
 
     dns_service_value = tk.StringVar()
     dns_service_value.set("off")

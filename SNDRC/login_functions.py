@@ -1,4 +1,5 @@
 import subprocess
+import pandas as pd
 import tkinter.messagebox as mgbx
 # from login_main import root
 from telnetlib import Telnet
@@ -66,7 +67,17 @@ def pre_telnet_device(ip, user, pwd):
     except Exception as e:
         mgbx.showinfo("Access Denied", f"{e}")
 
-def Add_button_press():
-    pass
+
+
+
+
+
+
+
+
+
+    # with open("addset_info.xlsx", "w") as f:
+    #     f.write(f"{ip_value},{username_value},{password_value},{enable_pass_value},{vendor_value},{device_var},{login_telnet_label_value},{login_ssh_label_value}")
+
 
 

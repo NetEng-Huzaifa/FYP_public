@@ -1,12 +1,12 @@
 import tkinter as tk
 
 #temporary import will delete when complete
-import os
-for i in range(1, 3):
-    os.chdir("..")
-print(os.getcwd())
+# import os
+# for i in range(1, 3):
+#     os.chdir("..")
+# print(os.getcwd())
 
-with open("login_info.txt", "r") as f:
+with open("Files/login_info.txt", "r") as f:
     var = f.readline()
     info = var.split(",")
 
@@ -17,10 +17,6 @@ router_root.geometry(f"{router_root.winfo_screenwidth()}x{router_root.winfo_scre
 # router_root.geometry("1330x800")
 # router_root.geometry()
 
-
-# top_frame = Frame(root, borderwidth=5, relief="groove")
-# top_frame.pack(anchor=N, fill=X, side=TOP)
-# labeltop = Label(top_frame, text="ROUTER").pack()
 
 left_button_frame = tk.Frame(router_root)
 left_button_frame.pack(anchor=tk.W, fill=tk.Y, side=tk.LEFT)

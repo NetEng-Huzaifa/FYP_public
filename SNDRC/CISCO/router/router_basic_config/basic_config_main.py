@@ -9,18 +9,18 @@ def basicConfig():
     # create frames
     system_main_frame = tk.Frame(notebook)
     user_frame = tk.Frame(notebook)
-    ssh_main_frame = tk.Frame(notebook)
+    # ssh_main_frame = tk.Frame(notebook)
     deviceManagement_frame = tk.Frame(notebook)
 
     system_main_frame.pack(fill='both', expand=True)
     user_frame.pack(fill='both', expand=True)
-    ssh_main_frame.pack(fill='both', expand=True)
+    # ssh_main_frame.pack(fill='both', expand=True)
     deviceManagement_frame.pack(fill='both', expand=True)
 
     # add frames to notebook
     notebook.add(system_main_frame, text='System')
     notebook.add(user_frame, text='User')
-    notebook.add(ssh_main_frame, text='SSH')
+    # notebook.add(ssh_main_frame, text='SSH')
     notebook.add(deviceManagement_frame, text='DeviceManagement')
 
 
@@ -30,8 +30,10 @@ def basicConfig():
     hostname_frame.pack(fill=tk.X, padx=20, pady=15)
     # label section
     hostname_label = tk.Label(hostname_frame, text="Write host-name of your device : ")
+    info_label = tk.Label(hostname_frame, text="Once Hostname is changed you need to run software again!")
 
-    hostname_label.grid(row=0, column=0)
+    hostname_label.grid(row=0, column=0, padx=10, pady=15)
+    info_label.grid(row=2, column=0, columnspan=2, sticky=tk.W, padx=10, pady=5)
     # Entries Section
     hostname_value = tk.StringVar()
 
@@ -50,13 +52,13 @@ def basicConfig():
     enablePass_label = tk.Label(enablePassword_frame, text="Set privilege execution mode password : ")
     enablePass_type_label = tk.Label(enablePassword_frame, text="Select type of password : ")
 
-    enablePass_label.grid(row=0, column=0)
-    enablePass_type_label.grid(row=1, column=0)
+    enablePass_label.grid(row=0, column=0, padx=10, pady=10)
+    enablePass_type_label.grid(row=1, column=0, padx=10, pady=10, sticky=tk.W)
     # Entries Section
     enablePass_value = tk.StringVar()
     enablePass_type_value = tk.StringVar()
 
-    enablePass_entry = tk.Entry(enablePassword_frame, textvariable=enablePass_value)
+    enablePass_entry = tk.Entry(enablePassword_frame, textvariable=enablePass_value, width= 23)
     enablePass_type_combobox = ttk.Combobox(enablePassword_frame, values=["Plain text", "Cipher"], textvariable=enablePass_type_value)
 
     enablePass_entry.grid(row=0, column=1, padx=20, pady=15)
@@ -64,7 +66,7 @@ def basicConfig():
     # Buttons Section
     ssh_run_button = tk.Button(enablePassword_frame, text="Execute", width=12, command=lambda: enablePass_config(enablePass_value.get(), enablePass_type_value.get()))
 
-    ssh_run_button.grid(row=2, column=3, padx=20, pady=10, sticky=tk.E)
+    ssh_run_button.grid(row=2, column=3, padx=20, pady=10, sticky=tk.W)
 
     # ===========> MOTD banner section
     motd_frame = tk.LabelFrame(system_main_frame, text="MOTD BANNER")
@@ -72,7 +74,8 @@ def basicConfig():
     # label section
     motd_label = tk.Label(motd_frame, text="Write message of the day : ")
 
-    motd_label.grid(row=0, column=0)
+    motd_label.grid(row=0, column=0, padx=10, pady=10)
+
     # Entries Section
     motd_value = tk.StringVar()
 
@@ -136,7 +139,7 @@ def basicConfig():
     name_label = tk.Label(adduser_frame, text="Username: ")
     password_label = tk.Label(adduser_frame, text="Password: ")
     type_label = tk.Label(adduser_frame, text="Type of password")
-    privilige_label = tk.Label(adduser_frame, text="Privilige Level:")
+    privilige_label = tk.Label(adduser_frame, text="Privilige Level: (0-15)")
 
     name_label.grid(row=0, column=0)
     password_label.grid(row=0, column=1)
@@ -160,11 +163,11 @@ def basicConfig():
     privilige_entry.grid(row=1, column=3, padx=20)
 
     # Buttons Section
-    cmd_button = tk.Button(adduser_frame, text="Commands", width=12)
-    useradd_run_button = tk.Button(adduser_frame, text="Execute", width=12, command=lambda: user_add_config(new_name_value, password_value, type_value, privilige_value))
+    # cmd_button = tk.Button(adduser_frame, text="Commands", width=12)
+    useradd_run_button = tk.Button(adduser_frame, text="Execute", width=12, command=lambda: user_add_config(new_name_value.get(), password_value.get(), type_value.get(), privilige_value.get()))
 
-    cmd_button.grid(row=2, column=0, padx=20, pady=15, sticky=tk.W)
-    useradd_run_button.grid(row=2, column=3, padx=20, sticky=tk.E)
+    # cmd_button.grid(row=2, column=0, padx=20, pady=15, sticky=tk.W)
+    useradd_run_button.grid(row=2, column=3, padx=20, pady=15, sticky=tk.E)
 
     # ===========> Remove username section
 
@@ -180,19 +183,7 @@ def basicConfig():
 
     # Buttons Section
     user_rmv_run_button = tk.Button(removeuser_info_frame, text="Execute", width=12, command=lambda: user_rmv_config(name_rmv_value.get()))
-    user_rmv_run_button.grid(row=0, column=3, padx=20, sticky=tk.E)
-
-    # Commands_display_frame = LabelFrame(user_frame, text="Commands")
-    # Commands_display_frame.pack(expand=TRUE, fill=BOTH, padx=20, pady=15, ipadx=10, ipady=10)
-    # name_value = StringVar()
-    # name_entry = Entry(Commands_display_frame, width=50)
-    # name_entry.pack(side=LEFT, expand=True, fill=BOTH)
-
-    # data_display_frame = LabelFrame(user_frame, text="Database")
-    # data_display_frame.pack(side=RIGHT, fill=BOTH, padx=20, pady=15, ipadx=10, ipady=10)
-    # name_value = StringVar()
-    # data_entry = Entry(data_display_frame, width=50)
-    # data_entry.pack(side=RIGHT, expand=True, fill=BOTH)
+    user_rmv_run_button.grid(row=0, column=3, padx=20, sticky=tk.SE)
 
     # ===============================Device Management Section==============================
     system_save_frame = tk.LabelFrame(deviceManagement_frame, text="SAVE")
@@ -200,7 +191,7 @@ def basicConfig():
 
     # ===========> Save label section
     save_label = tk.Label(system_save_frame, text="To write running Config in Startup Config : ")
-    save_label.grid(row=0, column=0)
+    save_label.grid(row=0, column=0, padx=10)
 
     # Save Buttons Section
     save_button = tk.Button(system_save_frame, text="Save", width=12, command=lambda: device_save())
@@ -211,7 +202,7 @@ def basicConfig():
     system_backup_frame.pack(fill=tk.X, padx=20, pady=15)
 
     backup_label = tk.Label(system_backup_frame, text="To Backup Device Configuration in your Local System : ")
-    backup_label.grid(row=0, column=0)
+    backup_label.grid(row=0, column=0, padx=10)
 
     # Backup Buttons Section
     backup_button = tk.Button(system_backup_frame, text="Download", width=12, command=lambda: device_backup())
@@ -222,16 +213,18 @@ def basicConfig():
     reset_frame.pack(fill=tk.X, padx=20, pady=15)
 
     reset_label = tk.Label(reset_frame, text="To Reset Device as factory default : ")
-    reset_label.grid(row=0, column=0)
+    reset_label.grid(row=0, column=0, padx=10)
 
     # Reset Buttons Section
-    reset_button = tk.Button(reset_frame, text="Reset", width=12, command=lambda: device_reset())
+    reset_button = tk.Button(reset_frame, text="1-Reset", width=12, command=lambda: device_reset())
     reset_button.grid(row=0, column=1, padx=20, pady=10, sticky=tk.E)
+
     # Reload Buttons Section
-    reload_button = tk.Button(reset_frame, text="Reload", width=12, command=lambda: device_reload())
+    reload_button = tk.Button(reset_frame, text="2-Reload", width=12, command=lambda: device_reload())
     reload_button.grid(row=0, column=2, padx=20, pady=10, sticky=tk.E)
 
     # =============================SSH Section================================
+    """
     ssh_frame = tk.LabelFrame(ssh_main_frame, text="Configure SSH:")
     ssh_frame.pack(fill=tk.X, padx=20, pady=15)
 
@@ -258,4 +251,5 @@ def basicConfig():
 
     # ssh_cmd_button.grid(row=2, column=0, padx=20, pady=15, sticky=tk.W)
     ssh_run_button.grid(row=2, column=3, padx=20, pady=15, sticky=tk.E)
+    """
 

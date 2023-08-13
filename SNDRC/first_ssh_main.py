@@ -5,7 +5,7 @@ from tkinter import messagebox as mgbx
 import subprocess
 
 # getting these values from login_info.txt file
-with open("login_info.txt", "r") as f:
+with open("Files/login_info.txt", "r") as f:
     var = f.readline()
     # print(type(var))
     # print(var)

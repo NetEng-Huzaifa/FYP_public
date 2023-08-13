@@ -24,12 +24,12 @@ def dhcp():
 
     # Radio button section
     dhcpServer_service_label = tk.Label(dhcpServer_service_frame, text="DHCP Services : ")
-    dhcpServer_service_label.grid(row=1, column=1)
+    dhcpServer_service_label.grid(row=1, column=1, padx=20, pady=10)
 
     dhcp_service_value = tk.StringVar()
     dhcp_service_value.set("off")
     dhcp_service_selection = tk.Radiobutton(dhcpServer_service_frame, text="OFF", variable=dhcp_service_value, value="off")
-    dhcp_service_selection.grid(row=1, column=2, padx=10, sticky=tk.W)
+    dhcp_service_selection.grid(row=1, column=2, padx=10, sticky=tk.E)
     dhcp_service_selection = tk.Radiobutton(dhcpServer_service_frame, text="ON", variable=dhcp_service_value, value="on")
     dhcp_service_selection.grid(row=2, column=2, padx=10, sticky=tk.W)
 
@@ -113,7 +113,7 @@ def dhcp():
     # label section
     dhcpClient_interface_label = tk.Label(dhcpClient_frame, text="Interface(port) : ")
 
-    dhcpClient_interface_label.grid(row=0, column=0)
+    dhcpClient_interface_label.grid(row=0, column=0, padx=20)
     # Entries Section
     dhcpClient_interface_value = tk.StringVar()
 

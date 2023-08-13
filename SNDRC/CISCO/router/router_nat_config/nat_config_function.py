@@ -56,7 +56,7 @@ def pat_config(pat_int_inside_value, pat_int_outside_value, pat_set_pool_name_va
             if 0 < int(pat_pool_prefixLength_value) < 31:
                 if ip_checking(pat_pool_from_value) == "IP_Pass":
                     if ip_checking(pat_pool_to_value) == "IP_Pass":
-                        print([f"interface {pat_int_inside_value}",
+                        conn.add_commands([f"interface {pat_int_inside_value}",
                                            f"ip nat inside",
                                            f"exit",
                                            f"interface {pat_int_outside_value}",
