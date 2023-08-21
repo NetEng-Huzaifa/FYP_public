@@ -1,1 +1,1 @@
-192.168.56.135,abc,123,123,Cisco,Router,SSH
+192.168.56.141,abc,123,123,Cisco,Router,Telnet,R1#,R1#,R1#,R1#,R1#,R1#,R1#,R1#,R1#,R1#,R1#,R1#,R1#,R1#,R1#,R1#

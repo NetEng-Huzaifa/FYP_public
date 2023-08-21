@@ -1,10 +1,10 @@
 from netmiko import ConnectHandler
 from tkinter import messagebox as mgbx
-# import os
+import os
 
 #this section will comment out when start execution of login page or ssh page
-# for i in range(1, 4):
-#     os.chdir("..")
+for i in range(1, 3):
+    os.chdir("..")
 # print(os.getcwd())
 print("Please Wait! Connecting You With your device...")
 with open("Files/login_info.txt", "r") as f:

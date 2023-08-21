@@ -47,14 +47,16 @@ def interface_config(interface_value, interface_state_value, interface_duplex_va
     else:
         mgbx.showinfo("Error", "Please select the interface first")
 
-def serial_interface_config(interface_serial_value, interface_serial_encapsulation_value, interface_serial_clockRate_value):
+def serial_interface_config(interface_serial_value, interface_serial_encapsulation_value, interface_serial_clockRate_value, interface_serial_auth_value):
     interface_serial_command_list = []
     if interface_serial_value != "":
         interface_serial_command_list.append(f"interface {interface_serial_value}")
         # encapsulation section
         if interface_serial_encapsulation_value == "HDLC":
+            # pass
             interface_serial_command_list.append("encapsulation hdlc")
         elif interface_serial_encapsulation_value == "PPP":
+            # pass
             interface_serial_command_list.append("encapsulation ppp")
         elif interface_serial_encapsulation_value == "":
             pass
@@ -71,6 +73,23 @@ def serial_interface_config(interface_serial_value, interface_serial_encapsulati
                     mgbx.showinfo("Error", "Please select the value between the given range")
             else:
                 mgbx.showinfo("Error", "Please select numeric value")
+
+        # Authentication Section
+        if interface_serial_auth_value:
+            if interface_serial_encapsulation_value == "PPP":
+                if interface_serial_auth_value == "PAP":
+                    interface_serial_command_list.append("ppp authentication pap")
+                elif interface_serial_auth_value == "CHAP":
+                    interface_serial_command_list.append("ppp authentication chap")
+                elif interface_serial_encapsulation_value == "":
+                    pass
+                else:
+                    mgbx.showinfo("Error", "Please select correct value")
+            else:
+                mgbx.showinfo("Error", "Please select PPP for configure PAP/CHAP")
+
+
+
 
         # print(interface_serial_command_list)
         conn.add_commands(interface_serial_command_list)
