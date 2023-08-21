@@ -108,8 +108,9 @@ password_entry.grid(row=2, column=1, padx=10, pady=10)
 enable_pass_entry.grid(row=3, column=1, padx=10, pady=10)
 #Vendor Selection
 vendor_value = tk.StringVar()
+vendor_value.set("Cisco")
 vendor_combobox = ttk.Combobox(top_frame, textvariable=vendor_value, values=["Cisco"], width=12)
-vendor_combobox.insert(0, "Select vendor")
+# vendor_combobox.insert(0, "Select vendor")
 vendor_combobox.grid(row=0, column=2, padx=20)
 
 #Access method Selection

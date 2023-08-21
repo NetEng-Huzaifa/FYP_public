@@ -46,7 +46,13 @@ class SshDevice:
         # self.ssh.exit_config_mode()
         # print("5", self.ssh.find_prompt())
         # self.reset_mode()
-
+    def get_hostname(self):
+        with open("Files/login_info.txt", "a") as f:
+            f.write(f",{self.ssh.find_prompt()}")
+        with open("Files/login_info.txt", "r") as f:
+            var = f.readline()
+            info = var.split(",")
+            return info[7]
     """
     def ssh_config_device(self, ssh_domain_value, version):
         print(self.ssh.find_prompt())
@@ -77,10 +83,28 @@ class SshDevice:
         print(output)
         print()
     """
+    """
     def save_device_commands(self):
         try:
-            self.ssh.save_config()
+            print(self.ssh.find_prompt())
+            self.ssh.disconnect()
+            print(self.ssh.save_config())
+            print(self.ssh.find_prompt())
+
             mgbx.showinfo("Success", "Configuration Saved Successfully")
+        except Exception as e:
+            print("exit")
+            mgbx.showinfo("Error", "Unable to save the commands! Please Try again")
+    """
+    def save_device_command_manual(self):
+        try:
+            output = self.ssh.send_command("write\n", read_timeout=30)
+            if "confirm" in output:
+                self.ssh.send_command("y\n")
+                # print("Save with confirm")
+            if "OK" in output:
+                # print("Save without confirm")
+                mgbx.showinfo("Success", "Configuration Saved Successfully")
         except Exception as e:
             mgbx.showinfo("Error", "Unable to save the commands! Please Try again")
 
@@ -134,7 +158,10 @@ class SshDevice:
         return self.ssh.send_command(command)
 
 conn = SshDevice()
+conn.get_hostname()
 # conn.backup_device_commands()
 # conn.reset_device_commands()
 # conn.reload_device_commands()
 # conn.backup_device_commands()
+# conn.save_device_commands()
+# conn.save_device_command_manual()

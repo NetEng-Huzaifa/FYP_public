@@ -1,4 +1,5 @@
 import tkinter as tk
+from .access_cisco_router.access_cisco_router_ssh import conn
 
 #temporary import will delete when complete
 # import os
@@ -11,7 +12,7 @@ with open("Files/login_info.txt", "r") as f:
     info = var.split(",")
 
 router_root = tk.Tk()
-router_root.title(f"SRCND_{info[0]}")
+router_root.title(f"SRCND_[{conn.get_hostname()}{info[0]}]")
 # WxH
 router_root.geometry(f"{router_root.winfo_screenwidth()}x{router_root.winfo_screenwidth()}")
 # router_root.geometry("1330x800")

@@ -15,7 +15,7 @@ def vtp():
 
     # =============================vtp Config Section================================
     # ===========> vtp define section
-    vtp_frame = tk.LabelFrame(vtp_main_frame, text="Create a Virtual LAN")
+    vtp_frame = tk.LabelFrame(vtp_main_frame, text="VIRTUAL TRUNKING PROTOCOL")
     vtp_frame.pack(fill=tk.X, padx=20, pady=15)
     # label section
     vtp_name_label = tk.Label(vtp_frame, text="domain name")

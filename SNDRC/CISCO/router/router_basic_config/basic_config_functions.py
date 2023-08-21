@@ -122,7 +122,8 @@ def user_rmv_config(name_rmv_value):
         mgbx.showinfo("Error", "Please Enter username to remove")
 # ==============================Device Management Section===============================
 def device_save():
-    conn.save_device_commands()
+    # conn.save_device_commands()
+    conn.save_device_command_manual()
 
 def device_backup():
     conn.backup_device_commands()
