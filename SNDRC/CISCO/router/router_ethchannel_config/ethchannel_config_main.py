@@ -1,11 +1,11 @@
 from tkinter import ttk
 from CISCO.router.router_main_frames import *
-from .papChap_config_functions import *
+from .ethchannel_config_functions import *
 from CISCO.router.access_cisco_router.access_cisco_router_ssh import *
 import re
 from CISCO.router.get_info_from_device import interface_info, vlan_info
 
-def interface_pap_chap():
+def eth_channel():
     notebook = ttk.Notebook(right_main_frame)
     notebook.pack(expand=True, anchor=tk.N, fill=tk.X)
     # create frames

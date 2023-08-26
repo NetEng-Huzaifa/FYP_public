@@ -10,7 +10,7 @@ from CISCO.router.switch_vlan_config.vlan_config_main import *
 from CISCO.router.switch_vtp_config.vtp_config_main import *
 from CISCO.router.switch_ports_config.ports_config_main import *
 from CISCO.router.router_nat_config.nat_config_main import *
-from CISCO.router.router_papChap_config.papChap_config_main import *
+from CISCO.router.router_ethchannel_config.ethchannel_config_main import *
 
 
 def hide_indicate():
@@ -26,6 +26,7 @@ def hide_indicate():
     vtp_config_button.config(bg="#d5d5d5", fg="black")
     ports_config_button.config(bg="#d5d5d5", fg="black")
     nat_config_button.config(bg="#d5d5d5", fg="black")
+    #eth_channel
     papChap_config_button.config(bg="#d5d5d5", fg="black")
 
 
@@ -63,7 +64,8 @@ ports_config_button = tk.Button(left_button_frame, text="Ports", font=("Arial", 
 ports_config_button.grid()
 nat_config_button = tk.Button(left_button_frame, text="NAT", font=("Arial", 12), bg="#d5d5d5", width=13, command=lambda: indicate(nat_config_button, nat))
 nat_config_button.grid()
-papChap_config_button = tk.Button(left_button_frame, text="PAP/CHAP", font=("Arial", 12), bg="#d5d5d5", width=13, command=lambda: indicate(papChap_config_button, interface_pap_chap))
+# eth_channel Button
+papChap_config_button = tk.Button(left_button_frame, text="PAP/CHAP", font=("Arial", 12), bg="#d5d5d5", width=13, command=lambda: indicate(papChap_config_button, eth_channel))
 papChap_config_button.grid()
 
 
